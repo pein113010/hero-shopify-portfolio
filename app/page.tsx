@@ -108,22 +108,57 @@ function IconLayers() {
   return <span aria-hidden="true">☰</span>;
 }
 
-const services = [
-  "Shopify product page builds and redesigns",
-  "Landing pages built in Liquid",
-  "Custom Dawn theme sections",
-  "Mobile UX improvements",
-  "Trust, FAQ, comparison, and offer sections",
-  "CRO-focused layout and hierarchy improvements",
-  "White-label Shopify support for agencies",
+function IconBolt() {
+  return <span aria-hidden="true">⚡</span>;
+}
+
+const topServices = [
+  "Shopify product pages",
+  "Landing pages",
+  "Custom Liquid sections",
+  "Mobile cleanup",
+];
+
+const serviceCards = [
+  {
+    title: "Product pages that sell more clearly",
+    text: "Cleaner hierarchy, stronger offer presentation, better trust flow, and more usable mobile layouts.",
+  },
+  {
+    title: "Landing pages built in custom Liquid",
+    text: "Focused pages for offers and campaigns, built cleanly without relying on bloated page builders.",
+  },
+  {
+    title: "Custom sections for Dawn-based themes",
+    text: "FAQ, guarantee, comparison, social proof, bundles, benefits, and other high-impact sections.",
+  },
+  {
+    title: "White-label support for agencies",
+    text: "Execution help for PDPs, landing pages, Dawn customization, and ongoing storefront refinements.",
+  },
+  {
+    title: "Mobile-first Shopify cleanup",
+    text: "Spacing, layout flow, CTA visibility, and section structure improved for better usability on smaller screens.",
+  },
+  {
+    title: "Offer and trust structure improvements",
+    text: "I help pages feel easier to buy from by making the core message, proof, and purchase journey clearer.",
+  },
+];
+
+const quickProof = [
+  "Built in Shopify Liquid",
+  "Dawn theme focused",
+  "Mobile-first thinking",
+  "Custom section work",
 ];
 
 const workflow = [
   "Review the product, offer, and current page structure",
-  "Improve hierarchy and conversion flow in Figma",
-  "Build or implement in Shopify Liquid on Dawn",
-  "Refine spacing, hierarchy, and mobile UX",
-  "Deliver a cleaner, more conversion-focused page structure",
+  "Improve hierarchy and page flow before building",
+  "Implement the page cleanly in Shopify Liquid on Dawn",
+  "Refine spacing, trust flow, and mobile presentation",
+  "Deliver a cleaner, easier-to-buy-from final page",
 ];
 
 const projects = [
@@ -131,8 +166,10 @@ const projects = [
     slug: "mushroom-supplement-pdp",
     title: "Mushroom Supplement PDP",
     subtitle: "Conversion-focused Shopify product page built in Liquid on Dawn.",
-    type: "Self-initiated Shopify conversion concept",
+    type: "Self-initiated Shopify concept",
     stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    summary:
+      "A supplement PDP designed to improve above-the-fold clarity, trust-building, bundle visibility, and educational flow.",
     goal:
       "Create a clearer buying experience for a supplement product by improving above-the-fold clarity, bundle presentation, trust-building, and educational flow.",
     focus: [
@@ -189,8 +226,10 @@ const projects = [
     title: "Daily Greens PDP",
     subtitle:
       "Educational Shopify PDP built in Liquid on Dawn for a supplement-style product.",
-    type: "Self-initiated Shopify conversion concept",
+    type: "Self-initiated Shopify concept",
     stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    summary:
+      "A product page built to make benefits, ingredients, and product differentiation easier to understand.",
     goal:
       "Create a product page that balances conversion with education by helping shoppers quickly understand benefits, ingredients, and product differentiation.",
     focus: [
@@ -244,8 +283,10 @@ const projects = [
     title: "Hair Growth Landing Page",
     subtitle:
       "Shopify landing page built in Liquid to support a direct-response style offer flow.",
-    type: "Self-initiated Shopify landing page concept",
+    type: "Self-initiated Shopify concept",
     stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    summary:
+      "A focused landing page built to support a stronger offer journey, proof flow, and clearer package presentation.",
     goal:
       "Build a focused landing page that presents the offer clearly, supports the buying angle with proof and education, and guides visitors through a stronger conversion journey.",
     focus: [
@@ -347,6 +388,7 @@ function ProjectCard({
                 {project.title}
               </h3>
               <p className="text-lg text-slate-600">{project.subtitle}</p>
+              <p className="max-w-2xl leading-7 text-slate-700">{project.summary}</p>
             </div>
 
             <div className="flex flex-wrap gap-2 text-sm text-slate-600">
@@ -498,19 +540,28 @@ export default function ShopifyAgencyPortfolioPage() {
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm text-slate-700 backdrop-blur">
                 <IconBriefcase />
-                Available for agency and white-label Shopify work
+                Available for freelance and white-label Shopify work
               </div>
 
               <div className="space-y-5">
                 <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                  Shopify Liquid Developer for CRO-Focused PDPs and Landing Pages
+                  Shopify product pages and landing pages that look cleaner and sell more clearly
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-                  I build conversion-focused Shopify product pages, landing pages,
-                  and custom sections in Liquid — with a strong focus on Dawn-based
-                  themes, mobile UX, offer clarity, trust-building, and clean
-                  implementation.
+                  I build Shopify product pages, landing pages, and custom Liquid sections
+                  with a focus on mobile UX, trust, offer clarity, and clean Dawn-based implementation.
                 </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                {topServices.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm"
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -524,22 +575,20 @@ export default function ShopifyAgencyPortfolioPage() {
                 </Button>
 
                 <Button asChild size="lg" variant="outline">
-                  <Link href="#contact">Work With Me</Link>
+                  <Link href="#contact">Start a Project</Link>
                 </Button>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {[
-                  "Shopify PDP builds and redesigns",
-                  "Landing pages in Liquid",
-                  "Custom Dawn sections",
-                  "Mobile UX and conversion structure",
-                ].map((item) => (
+              <div className="grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
+                {quickProof.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm"
                   >
-                    {item}
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-100 text-slate-900">
+                      <IconCheck />
+                    </span>
+                    <span>{item}</span>
                   </div>
                 ))}
               </div>
@@ -598,21 +647,70 @@ export default function ShopifyAgencyPortfolioPage() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 sm:py-16">
+          <div className="grid gap-4 md:grid-cols-3">
+            <Card className="border-slate-200/80">
+              <CardContent className="flex items-start gap-4 p-6">
+                <div className="rounded-xl bg-slate-100 p-3">
+                  <IconLayout />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-950">Cleaner page structure</h3>
+                  <p className="leading-7 text-slate-600">
+                    I help Shopify pages feel easier to understand and easier to buy from.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-slate-200/80">
+              <CardContent className="flex items-start gap-4 p-6">
+                <div className="rounded-xl bg-slate-100 p-3">
+                  <IconPhone />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-950">Better mobile UX</h3>
+                  <p className="leading-7 text-slate-600">
+                    Spacing, hierarchy, CTA flow, and section order improved for smaller screens.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-slate-200/80">
+              <CardContent className="flex items-start gap-4 p-6">
+                <div className="rounded-xl bg-slate-100 p-3">
+                  <IconShield />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-950">Stronger trust flow</h3>
+                  <p className="leading-7 text-slate-600">
+                    I build FAQ, guarantee, proof, comparison, and reassurance sections that support the buying decision.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
         <SectionTitle
           eyebrow="What I Help With"
-          title="Shopify execution support built for agencies and eCommerce brands"
-          text="My strongest lane is conversion-focused Shopify work: PDPs, landing pages, custom sections, and Dawn-based implementation with attention to mobile UX and buying flow."
+          title="Shopify support for brands and agencies that need pages improved properly"
+          text="My strongest work is Shopify product pages, landing pages, custom Liquid sections, and Dawn-based front-end implementation with close attention to mobile presentation and buying flow."
         />
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <Card key={service} className="border-slate-200/80">
-              <CardContent className="flex items-start gap-4 p-6">
-                <div className="rounded-xl bg-slate-100 p-3">
+          {serviceCards.map((service) => (
+            <Card key={service.title} className="border-slate-200/80">
+              <CardContent className="space-y-3 p-6">
+                <div className="inline-flex rounded-xl bg-slate-100 p-3 text-slate-900">
                   <IconLayers />
                 </div>
-                <p className="leading-7 text-slate-700">{service}</p>
+                <h3 className="text-lg font-semibold text-slate-950">{service.title}</h3>
+                <p className="leading-7 text-slate-600">{service.text}</p>
               </CardContent>
             </Card>
           ))}
@@ -626,8 +724,8 @@ export default function ShopifyAgencyPortfolioPage() {
         >
           <SectionTitle
             eyebrow="Featured Work"
-            title="Three Shopify builds positioned as specialist proof"
-            text="These projects are presented as conversion-focused Shopify work — not just visuals, but examples of how I think about hierarchy, trust, clarity, and implementation inside Dawn-based builds."
+            title="Selected Shopify projects"
+            text="Three self-initiated builds that show how I approach hierarchy, trust, clarity, and Shopify Liquid implementation."
           />
 
           <div className="mt-6">
@@ -643,8 +741,8 @@ export default function ShopifyAgencyPortfolioPage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <SectionTitle
               eyebrow="How I Work"
-              title="A simple workflow that fits real Shopify delivery"
-              text="I combine structured Figma thinking with practical Shopify implementation so the output is not just cleaner visually, but easier to use and closer to conversion goals."
+              title="A practical process for Shopify delivery"
+              text="I combine structured page thinking with practical Shopify implementation so the final output is cleaner, more usable, and easier to build on."
             />
 
             <div className="grid gap-4">
@@ -673,24 +771,23 @@ export default function ShopifyAgencyPortfolioPage() {
                     <IconCode />
                   </div>
                   <h3 className="text-2xl font-semibold text-slate-950">
-                    Agency / White-Label Support
+                    Why clients hire me
                   </h3>
                 </div>
 
                 <p className="leading-7 text-slate-600">
-                  I’m best suited for agencies that need a Shopify-focused
-                  execution partner who understands both implementation and
-                  conversion-oriented layout decisions.
+                  I’m best suited for Shopify work where the goal is not just to make the page look better,
+                  but to make it clearer, cleaner, and easier to buy from.
                 </p>
 
                 <ul className="space-y-3 text-slate-700">
                   {[
-                    "White-label Shopify development",
-                    "PDP and landing page implementation",
-                    "Dawn theme section builds",
-                    "Conversion-focused page refinements",
-                    "Mobile UX cleanup and layout polishing",
-                    "Ongoing Shopify support for agency delivery",
+                    "Custom Liquid builds instead of bloated page-builder output",
+                    "Strong attention to mobile hierarchy and section flow",
+                    "Dawn theme familiarity and custom section implementation",
+                    "Useful support for PDPs, landing pages, and high-impact page sections",
+                    "White-label availability for agencies needing execution help",
+                    "Practical focus on clarity, trust, and offer presentation",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
@@ -709,17 +806,13 @@ export default function ShopifyAgencyPortfolioPage() {
               <div className="space-y-5">
                 <div className="flex items-center gap-3">
                   <div className="rounded-xl bg-slate-100 p-3">
-                    <IconLayout />
+                    <IconBolt />
                   </div>
-                  <h3 className="text-2xl font-semibold text-slate-950">About</h3>
+                  <h3 className="text-2xl font-semibold text-slate-950">Best-fit work</h3>
                 </div>
 
                 <p className="leading-7 text-slate-600">
-                  I’m a Shopify-focused developer specializing in Liquid-based
-                  product pages, landing pages, and conversion-focused section
-                  work. My approach combines Figma-led structure with practical
-                  Shopify implementation, with strong attention to mobile UX,
-                  hierarchy, clarity, and trust-building.
+                  The strongest fit for me is Shopify work where structure, page flow, and front-end execution matter.
                 </p>
 
                 <div className="grid gap-3 sm:grid-cols-3">
@@ -734,7 +827,7 @@ export default function ShopifyAgencyPortfolioPage() {
                     <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
                       <IconShield />
                     </span>
-                    <p className="mt-2 text-sm text-slate-700">Trust Structure</p>
+                    <p className="mt-2 text-sm text-slate-700">Trust Sections</p>
                   </div>
 
                   <div className="rounded-2xl border border-slate-200 p-4 text-center">
@@ -744,6 +837,23 @@ export default function ShopifyAgencyPortfolioPage() {
                     <p className="mt-2 text-sm text-slate-700">Dawn Builds</p>
                   </div>
                 </div>
+
+                <ul className="space-y-3 border-t border-slate-200 pt-5 text-slate-700">
+                  {[
+                    "Shopify product page redesigns",
+                    "Landing page builds in Liquid",
+                    "FAQ, guarantee, comparison, and proof sections",
+                    "Mobile cleanup and layout refinement",
+                    "Agency white-label Shopify support",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
+                        <IconCheck />
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </CardContent>
           </Card>
@@ -762,12 +872,12 @@ export default function ShopifyAgencyPortfolioPage() {
                     </p>
 
                     <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                      Need help with a Shopify PDP, landing page, or Dawn-based build?
+                      Need help with a Shopify product page, landing page, or custom section build?
                     </h2>
 
                     <p className="text-base leading-7 text-slate-300 sm:text-lg">
                       I help brands and agencies improve Shopify pages with cleaner structure,
-                      better hierarchy, stronger mobile UX, and more conversion-focused design.
+                      better hierarchy, stronger mobile UX, and better front-end execution.
                     </p>
                   </div>
 
@@ -890,7 +1000,7 @@ export default function ShopifyAgencyPortfolioPage() {
                         id="service"
                         name="service"
                         type="text"
-                        placeholder="Product page, landing page, CRO improvements, Dawn customization..."
+                        placeholder="Product page, landing page, custom section, mobile cleanup..."
                         className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
                       />
                     </div>
@@ -916,7 +1026,7 @@ export default function ShopifyAgencyPortfolioPage() {
                         id="message"
                         name="message"
                         rows={6}
-                        placeholder="Tell me about your store, what needs improving, and what kind of support you need."
+                        placeholder="Tell me what needs improving and what kind of Shopify support you need."
                         className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
                         required
                       />
@@ -956,7 +1066,7 @@ export default function ShopifyAgencyPortfolioPage() {
                         Support
                       </p>
                       <p className="mt-2 text-sm leading-6 text-slate-700">
-                        Shopify PDPs, landing pages, Dawn customization, and CRO-focused improvements.
+                        Shopify product pages, landing pages, custom sections, Dawn customization, and front-end page improvements.
                       </p>
                     </div>
 
