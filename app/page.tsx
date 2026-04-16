@@ -1,856 +1,979 @@
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function PortfolioCaseStudyPage() {
-  const metrics = [
-    { label: "Focus", value: "Shopify PDPs + CRO" },
-    { label: "Niche", value: "Supplements / wellness" },
-    { label: "Project Type", value: "Self-initiated conversion case study" },
-  ];
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
-  const diagnosis = [
-    {
-      eyebrow: "01",
-      title: "Above-the-fold clarity was the priority",
-      problem:
-        "Cold visitors need to understand the product promise, product type, and buying angle within seconds.",
-      decision:
-        "Built the hero around one main promise, one supporting mechanism line, three fast outcome bullets, and a clearer bundle selection flow.",
-      why: "This reduces confusion and helps the visitor move from interest to buying intent faster.",
-    },
-    {
-      eyebrow: "02",
-      title: "Bundle structure needed visual decision support",
-      problem:
-        "When multiple purchase options are present, weak visual hierarchy creates hesitation and slows selection.",
-      decision:
-        "Made the 3-bottle option visually preferred, clarified savings, surfaced shipping incentives, and separated starter vs value options more clearly.",
-      why: "This helps brands guide selection instead of making all options feel equally weighted.",
-    },
-    {
-      eyebrow: "03",
-      title: "Trust had to be layered, not isolated",
-      problem:
-        "Supplement visitors usually need repeated reassurance before purchase, especially from cold traffic.",
-      decision:
-        "Distributed trust across the page using ingredient explanation, testimonial framing, guarantee messaging, facility / testing reassurance, and FAQ objection handling.",
-      why: "Trust works better when reinforced throughout the journey instead of left to one single section.",
-    },
-    {
-      eyebrow: "04",
-      title: "The page had to answer the next question",
-      problem:
-        "A strong PDP should not just look clean. It should remove uncertainty in the order customers naturally experience it.",
-      decision:
-        "Structured the page around this flow: promise → benefits → why it works → proof → usage → guarantee → objections.",
-      why: "This supports purchase momentum and gives each section a clear conversion job.",
-    },
-  ];
+type CardProps = React.HTMLAttributes<HTMLDivElement>;
 
-  const originalIssues = [
-    "Too many elements can compete in the hero if the hierarchy is not tightly controlled.",
-    "Bundle options can lose persuasive force when the preferred choice is not visually obvious.",
-    "Trust signals are weaker when they appear late or feel disconnected from the buying flow.",
-    "Ingredient and benefit sections need to support belief, not just fill space.",
-    "Guarantee and FAQ sections should actively reduce hesitation before checkout.",
-    "Mobile experience needs to preserve scan speed, spacing, and CTA clarity without clutter.",
-  ];
+function Card({ className, ...props }: CardProps) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)]",
+        className || ""
+      )}
+      {...props}
+    />
+  );
+}
 
-  const sectionStrategy = [
-    {
-      eyebrow: "01",
-      title: "Hero Section",
-      text: "Clarifies the offer, the desired outcome, and the next action above the fold while supporting bundle choice.",
-    },
-    {
-      eyebrow: "02",
-      title: "Benefits Section",
-      text: "Translates the product into quick, outcome-oriented reasons to care, built for fast scanning.",
-    },
-    {
-      eyebrow: "03",
-      title: "Ingredients / Why It Works",
-      text: "Gives the buyer a reason to believe by connecting ingredients to outcomes and everyday relevance.",
-    },
-    {
-      eyebrow: "04",
-      title: "Testimonials / Reviews",
-      text: "Adds social proof after core understanding is established, helping reduce skepticism.",
-    },
-    {
-      eyebrow: "05",
-      title: "How To Use",
-      text: "Makes the routine feel simple and easy to adopt so the product feels lower-friction to start.",
-    },
-    {
-      eyebrow: "06",
-      title: "Guarantee + FAQ",
-      text: "Handles objections, lowers risk, and supports confidence near the final conversion stage.",
-    },
-  ];
+function CardContent({ className, ...props }: CardProps) {
+  return <div className={className} {...props} />;
+}
 
-  const designedToImprove = [
-    "Faster understanding of the offer above the fold",
-    "Clearer visibility for the preferred bundle option",
-    "Stronger trust-building before add-to-cart",
-    "Better support for cold traffic and paid traffic visitors",
-    "Lower hesitation through clearer proof and guarantee framing",
-    "A smoother path from initial interest to purchase intent",
-  ];
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  asChild?: boolean;
+  variant?: "default" | "outline" | "secondary";
+  size?: "default" | "lg";
+  children: React.ReactNode;
+};
 
-  const process = [
-    {
-      step: "01",
-      title: "Diagnose friction",
-      text: "Review what is unclear, under-emphasized, visually competing, or missing from the buying journey.",
-    },
-    {
-      step: "02",
-      title: "Rebuild hierarchy",
-      text: "Make the product promise, offer, trust signals, and preferred buying path easier to understand.",
-    },
-    {
-      step: "03",
-      title: "Layer trust and proof",
-      text: "Support the product with ingredients, testimonials, reassurance, and objection handling in the right order.",
-    },
-    {
-      step: "04",
-      title: "Refine for mobile",
-      text: "Preserve scan speed, spacing, readability, and CTA clarity across smaller screens.",
-    },
-  ];
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  asChild,
+  children,
+  ...props
+}: ButtonProps) {
+  const base =
+    "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  const variants = {
+    default: "bg-slate-950 text-white hover:bg-slate-800",
+    outline: "border border-slate-300 bg-white text-slate-950 hover:bg-slate-50",
+    secondary: "bg-white text-slate-950 hover:bg-slate-100",
+  };
+  const sizes = {
+    default: "h-10 px-4 py-2 text-sm",
+    lg: "h-12 px-6 text-sm",
+  };
 
-  const services = [
-    "Shopify product page design",
-    "CRO-focused PDP structure",
-    "Landing pages for single-product brands",
-    "Bundle offer presentation",
-    "Trust-building section design",
-    "Section strategy and conversion flow",
-  ];
-
-  const gallery = [
-    {
-      title: "Hero Preview",
-      subtitle: "Above-the-fold structure and bundle presentation",
-      src: "/gallery/hero-preview.jpg",
-      alt: "Hero preview of Shopify PDP",
-    },
-    {
-      title: "Trust + Education",
-      subtitle: "Benefits, ingredients, and product-belief sections",
-      src: "/gallery/trust-education.jpg",
-      alt: "Trust and education section of Shopify PDP",
-    },
-    {
-      title: "Full Page Layout",
-      subtitle: "Desktop case study screenshot",
-      src: "/gallery/full-page.jpg",
-      alt: "Full page Shopify product page layout",
-    },
-    {
-      title: "Mobile Experience",
-      subtitle: "Mobile-first layout and scan flow",
-      src: "/gallery/mobile-preview.jpg",
-      alt: "Mobile Shopify PDP preview",
-    },
-  ];
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<{ className?: string }>;
+    return React.cloneElement(child, {
+      className: cn(
+        base,
+        variants[variant],
+        sizes[size],
+        "rounded-none",
+        className || "",
+        child.props.className || ""
+      ),
+      ...props,
+    });
+  }
 
   return (
-    <main className="min-h-screen bg-[#f7f3ec] text-[#171717]">
-      <section className="relative overflow-hidden border-b border-black/10">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,195,167,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(195,210,189,0.18),transparent_32%)]" />
+    <button
+      className={cn(base, variants[variant], sizes[size], "rounded-none", className || "")}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
 
-  <div className="relative mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
-    <div className="grid items-start gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-14">
-      <div className="max-w-[820px]">
-        <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-black/55 backdrop-blur-sm">
-          <span className="h-2 w-2 rounded-full bg-[#8f9b87]" />
-          Available for Shopify PDP work
+function IconArrowRight() {
+  return <span aria-hidden="true">→</span>;
+}
+
+function IconCheck() {
+  return <span aria-hidden="true">✓</span>;
+}
+
+function IconBriefcase() {
+  return <span aria-hidden="true">▣</span>;
+}
+
+function IconCode() {
+  return <span aria-hidden="true">⌘</span>;
+}
+
+function IconLayout() {
+  return <span aria-hidden="true">◫</span>;
+}
+
+function IconPhone() {
+  return <span aria-hidden="true">▭</span>;
+}
+
+function IconShield() {
+  return <span aria-hidden="true">⬒</span>;
+}
+
+function IconLayers() {
+  return <span aria-hidden="true">☰</span>;
+}
+
+const services = [
+  "Shopify product page builds and redesigns",
+  "Landing pages built in Liquid",
+  "Custom Dawn theme sections",
+  "Mobile UX improvements",
+  "Trust, FAQ, comparison, and offer sections",
+  "CRO-focused layout and hierarchy improvements",
+  "White-label Shopify support for agencies",
+];
+
+const workflow = [
+  "Review the product, offer, and current page structure",
+  "Improve hierarchy and conversion flow in Figma",
+  "Build or implement in Shopify Liquid on Dawn",
+  "Refine spacing, hierarchy, and mobile UX",
+  "Deliver a cleaner, more conversion-focused page structure",
+];
+
+const projects = [
+  {
+    slug: "mushroom-supplement-pdp",
+    title: "Mushroom Supplement PDP",
+    subtitle: "Conversion-focused Shopify product page built in Liquid on Dawn.",
+    type: "Self-initiated Shopify conversion concept",
+    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    goal:
+      "Create a clearer buying experience for a supplement product by improving above-the-fold clarity, bundle presentation, trust-building, and educational flow.",
+    focus: [
+      "Clearer value proposition above the fold",
+      "Better bundle and offer visibility",
+      "Trust-building through testimonials, guarantee, and FAQ",
+      "Ingredient and benefit education",
+      "Simple routine section to support product understanding",
+      "Mobile-friendly section hierarchy",
+    ],
+    built: [
+      "Product hero with stronger message hierarchy",
+      "Bundle selection area with clearer offer framing",
+      "Benefits section",
+      "Ingredient / why-it-works section",
+      "Testimonial section",
+      "Routine / how-to-use section",
+      "Guarantee section",
+      "FAQ section",
+    ],
+    why:
+      "This page was structured to reduce hesitation, improve product understanding, and support faster buying decisions on both desktop and mobile.",
+    mainImage: "/gallery/mush-full.png",
+    mobileImage: "/gallery/ml.png",
+    sections: [
+      {
+        title: "Hero section",
+        description:
+          "Focused on clearer value proposition, stronger hierarchy, and faster product understanding.",
+        image: "/gallery/q.jpg",
+      },
+      {
+        title: "Bundle section",
+        description:
+          "Designed to improve offer clarity and make plan selection easier.",
+        image: "/gallery/b.jpg",
+      },
+      {
+        title: "Trust + proof section",
+        description:
+          "Uses testimonials and reassurance elements to reduce hesitation.",
+        image: "/gallery/r.jpg",
+      },
+      {
+        title: "FAQ / objection handling",
+        description:
+          "Structured to answer common buying questions and support conversion.",
+        image: "/gallery/f.jpg",
+      },
+    ],
+  },
+  {
+    slug: "daily-greens-pdp",
+    title: "Daily Greens PDP",
+    subtitle:
+      "Educational Shopify PDP built in Liquid on Dawn for a supplement-style product.",
+    type: "Self-initiated Shopify conversion concept",
+    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    goal:
+      "Create a product page that balances conversion with education by helping shoppers quickly understand benefits, ingredients, and product differentiation.",
+    focus: [
+      "Simpler product understanding",
+      "Comparison-based decision support",
+      "Ingredient and benefit education",
+      "Cleaner mobile flow",
+      "Review and FAQ integration",
+      "Stronger section hierarchy throughout the page",
+    ],
+    built: [
+      "Product hero section",
+      "Comparison / differentiation section",
+      "Benefits and ingredient sections",
+      "Social proof / review section",
+      "FAQ section",
+      "Supporting trust and information blocks",
+    ],
+    why:
+      "For products that need more explanation, structure matters. This concept was built to improve clarity, reduce confusion, and help the page do more of the selling work.",
+    mainImage: "/gallery/g-full.jpg",
+    mobileImage: "/gallery/g-full-m.jpg",
+    sections: [
+      {
+        title: "Hero section",
+        description:
+          "Introduces the product with stronger message clarity and cleaner hierarchy.",
+        image: "/gallery/g-h.jpg",
+      },
+      {
+        title: "Comparison section",
+        description:
+          "Helps shoppers understand product differentiation faster.",
+        image: "/gallery/gc.png",
+      },
+      {
+        title: "Ingredients / education",
+        description:
+          "Supports trust and product understanding through clearer explanation.",
+        image: "/gallery/gi.png",
+      },
+      {
+        title: "FAQ section",
+        description: "Handles hesitation and common buyer objections.",
+        image: "/gallery/gf.png",
+      },
+    ],
+  },
+  {
+    slug: "hair-growth-landing-page",
+    title: "Hair Growth Landing Page",
+    subtitle:
+      "Shopify landing page built in Liquid to support a direct-response style offer flow.",
+    type: "Self-initiated Shopify landing page concept",
+    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
+    goal:
+      "Build a focused landing page that presents the offer clearly, supports the buying angle with proof and education, and guides visitors through a stronger conversion journey.",
+    focus: [
+      "Ad-to-page continuity",
+      "Clear offer and plan presentation",
+      "Visual proof and testimonials",
+      "Science / ingredient explanation",
+      "Subscription value communication",
+      "FAQ objection handling",
+    ],
+    built: [
+      "Hero section with offer framing",
+      "Plan / package selection area",
+      "Testimonials and proof sections",
+      "Science / ingredients section",
+      "How-it-works section",
+      "Blog / supporting content section",
+      "Subscription value section",
+      "FAQ section",
+    ],
+    why:
+      "Landing pages need momentum. This concept was structured to keep the visitor moving through proof, explanation, and offer clarity without unnecessary friction.",
+    mainImage: "/gallery/lpfull.jpg",
+    mobileImage: "/gallery/lm.jpg",
+    sections: [
+      {
+        title: "Hero section",
+        description:
+          "Frames the offer fast and gives the page a strong starting point.",
+        image: "/gallery/lh.jpg",
+      },
+      {
+        title: "Plan selection",
+        description:
+          "Makes pricing and package choice easier to understand.",
+        image: "/gallery/lp.jpg",
+      },
+      {
+        title: "Proof + testimonials",
+        description:
+          "Adds credibility and keeps the offer grounded in social proof.",
+        image: "/gallery/lp.jpg",
+      },
+      {
+        title: "FAQ section",
+        description:
+          "Reduces hesitation and helps move visitors closer to action.",
+        image: "/gallery/lf.jpg",
+      },
+    ],
+  },
+];
+
+function SectionTitle({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: string;
+  text?: string;
+}) {
+  return (
+    <div className="max-w-3xl space-y-3">
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+        {title}
+      </h2>
+      {text ? (
+        <p className="text-base leading-7 text-slate-600 sm:text-lg">{text}</p>
+      ) : null}
+    </div>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+}) {
+  return (
+    <section
+      id={project.slug}
+      className="scroll-mt-24 border-t border-slate-200/80 py-16 sm:py-20"
+    >
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <div className="inline-flex rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
+              Project {index + 1}
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+                {project.title}
+              </h3>
+              <p className="text-lg text-slate-600">{project.subtitle}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-sm text-slate-600">
+              <span className="rounded-full bg-slate-100 px-3 py-1">{project.type}</span>
+              {project.stack.map((item) => (
+                <span key={item} className="rounded-full bg-slate-100 px-3 py-1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <Card className="border-slate-200/80">
+            <CardContent className="p-6 sm:p-8">
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    Goal
+                  </h4>
+                  <p className="mt-2 leading-7 text-slate-700">{project.goal}</p>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    What I Focused On
+                  </h4>
+                  <ul className="mt-3 space-y-3">
+                    {project.focus.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-slate-700">
+                        <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
+                          <IconCheck />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    What I Built
+                  </h4>
+                  <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {project.built.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    Why It Matters
+                  </h4>
+                  <p className="mt-2 leading-7 text-slate-700">{project.why}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.24em] text-black/55 md:text-sm">
-          Worgie Chaparadza · Shopify Product Page Designer
-        </p>
+        <div className="space-y-6 lg:sticky lg:top-24">
+          <Card className="overflow-hidden border-slate-200/80">
+            <CardContent className="p-0">
+              <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                    Desktop layout
+                  </p>
+                </div>
 
-        <h1 className="mt-5 max-w-[720px] text-[3.15rem] font-semibold leading-[0.92] tracking-[-0.055em] text-black md:text-[4.4rem] lg:text-[5.1rem]">
-          Shopify product
-          <br />
-          pages built for
-          <br />
-          clarity, trust,
-          <br />
-          and purchase
-          <br />
-          intent.
-        </h1>
-
-        <p className="mt-6 max-w-[620px] text-[1.02rem] leading-8 text-black/68 md:text-[1.08rem]">
-          This case study shows how I structure supplement PDPs to improve offer
-          clarity, buying confidence, and conversion flow without relying on
-          fake results or inflated performance claims.
-        </p>
-
-        <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="#case-study"
-              className="rounded-full bg-[#171717] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            >
-              View Case Study
-            </a>
-
-            <a
-              href="#contact"
-              className="rounded-full border border-black/12 bg-white px-6 py-3 text-sm font-medium text-[#171717] transition hover:bg-black/5"
-            >
-              Request Demo Access
-            </a>
-          </div>
-
-          <a
-            href="#contact"
-            className="text-sm font-medium text-black/62 underline decoration-black/20 underline-offset-4 transition hover:text-black"
-          >
-            Request PDP Review
-          </a>
-        </div>
-
-        <p className="mt-4 max-w-[620px] text-sm leading-6 text-black/52">
-          The live demo is protected to preserve the build. Access is available
-          for brands and serious inquiries.
-        </p>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-[1.4rem] border border-black/10 bg-white/92 p-5 shadow-sm backdrop-blur-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              Focus
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/82">
-              Shopify PDPs + CRO
-            </p>
-          </div>
-
-          <div className="rounded-[1.4rem] border border-black/10 bg-white/92 p-5 shadow-sm backdrop-blur-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              Best fit
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/82">
-              Supplements / wellness brands
-            </p>
-          </div>
-
-          <div className="rounded-[1.4rem] border border-black/10 bg-white/92 p-5 shadow-sm backdrop-blur-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              What you can review
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/82">
-              Strategy, design, and buying flow
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative">
-        <div className="absolute -left-6 top-10 hidden h-44 w-44 rounded-full bg-[#d8c2a5]/45 blur-3xl md:block" />
-        <div className="absolute -bottom-8 right-6 hidden h-52 w-52 rounded-full bg-[#c8d4bf]/45 blur-3xl md:block" />
-
-        <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_30px_90px_rgba(0,0,0,0.08)]">
-          <div className="bg-[linear-gradient(135deg,#eadfce_0%,#f8f5ee_45%,#e5ece1_100%)] p-3 md:p-4">
-            <div className="border border-black/10 bg-white p-4 md:p-5">
-              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-  <div>
-    <p className="text-[11px] uppercase tracking-[0.22em] text-black/45">
-      Featured Case Study
-    </p>
-    <h2 className="mt-2 text-[2rem] font-semibold leading-[0.98] tracking-[-0.03em] text-black md:text-[2.65rem]">
-      Supplement PDP
-      <br />
-      Concept
-    </h2>
-  </div>
-
-  <div className="w-fit rounded-md border border-black/10 bg-white px-3 py-2 text-[11px] font-medium text-black/60 md:shrink-0">
-    Self-Initiated Project
-  </div>
-</div>
-
-              <div className="mt-5 overflow-hidden border border-black/10 bg-[#f8f5ef] p-1.5 md:p-2">
                 <Image
-                  src="/gallery/hero-preview.jpg"
-                  alt="Featured Shopify PDP hero screenshot"
-                  width={1600}
-                  height={1100}
-                  className="h-auto w-full object-contain object-top"
-                  priority
+                  src={project.mainImage}
+                  alt={`${project.title} desktop preview`}
+                  width={1200}
+                  height={3200}
+                  className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
                 />
               </div>
+            </CardContent>
+          </Card>
 
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                <div className="border border-black/10 bg-[#faf8f3] p-4">
-                  <p className="text-sm text-black/55">Positioning</p>
-                  <p className="mt-2 text-sm leading-6 text-black/76">
-                    CRO-focused supplement PDP concept built to improve clarity,
-                    trust, and bundle decision-making.
+          <Card className="overflow-hidden border-slate-200/80">
+            <CardContent className="p-0">
+              <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                    Mobile layout
                   </p>
                 </div>
 
-                <div className="border border-black/10 bg-[#faf8f3] p-4">
-                  <p className="text-sm text-black/55">What brands can review</p>
-                  <p className="mt-2 text-sm leading-6 text-black/76">
-                    Hierarchy, offer framing, trust placement, objection
-                    handling, and mobile flow.
-                  </p>
-                </div>
-
-                <div className="bg-[#1f1d19] p-4 text-white">
-                  <p className="text-sm text-white/60">Core CRO focus</p>
-                  <p className="mt-2 text-sm leading-6 text-white/90">
-                    Clarity, proof, risk reversal, and conversion-led page
-                    structure.
-                  </p>
-                </div>
+                <Image
+                  src={project.mobileImage}
+                  alt={`${project.title} mobile preview`}
+                  width={1200}
+                  height={3200}
+                  className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
+                />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-      <section
-        id="case-study"
-        className="border-y border-black/10 bg-white/70 backdrop-blur-sm scroll-mt-24"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                Case Study Positioning
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                A product page structured like a conversion system.
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-black/72">
-                This project was built to show how I think through a Shopify
-                PDP: not as one long layout, but as a sequence of conversion
-                decisions. Each section has a clear role in helping the customer
-                understand, trust, and act.
-              </p>
-            </div>
-
-            <div className="rounded-[1.8rem] border border-black/10 bg-[#fbfaf7] p-6 shadow-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-                What I was solving for
-              </p>
-              <h3 className="mt-3 text-2xl font-semibold text-black/92">
-                The page needed to feel more persuasive, not just more polished.
-              </h3>
-              <p className="mt-4 text-sm leading-6 text-black/72">
-                For supplement product pages, better design alone is not enough.
-                The page has to support purchase intent by making the offer
-                easier to understand, the bundle easier to choose, and the trust
-                signals harder to miss.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<section className="border-y border-black/10 bg-[#f7f3ec]">
-  <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
-    <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-      <div className="max-w-[560px]">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-black/48 md:text-sm">
-          CRO Diagnosis
-        </p>
-
-        <h2 className="mt-5 text-[2.7rem] font-semibold leading-[0.96] tracking-[-0.045em] text-black md:text-[4rem]">
-          The reasoning behind the page structure.
-        </h2>
-
-        <p className="mt-6 max-w-[520px] text-[1.02rem] leading-8 text-black/68 md:text-[1.06rem]">
-          This case study breaks the page down into specific conversion
-          decisions — not vague design language. Each choice was made to reduce
-          friction, support trust, and guide the next step in the buying flow.
-        </p>
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-          <div className="rounded-[1.35rem] border border-black/10 bg-white/88 p-4 shadow-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              What this shows
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/80">
-              Strategic CRO thinking, not just visual styling.
-            </p>
-          </div>
-
-          <div className="rounded-[1.35rem] border border-black/10 bg-white/88 p-4 shadow-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              Focus
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/80">
-              Clarity, trust, offer visibility, and buying flow.
-            </p>
-          </div>
-
-          <div className="rounded-[1.35rem] border border-black/10 bg-white/88 p-4 shadow-sm">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-black/42">
-              Goal
-            </p>
-            <p className="mt-2 text-sm font-medium leading-6 text-black/80">
-              Make the page easier to understand and easier to buy from.
-            </p>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-[1.8rem] border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-            01
-          </p>
+      <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        {project.sections.map((section) => (
+          <Card key={section.title} className="overflow-hidden border-slate-200/80">
+            <CardContent className="p-0">
+              <div className="p-3">
+                <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
+                      {section.title}
+                    </p>
+                  </div>
 
-          <h3 className="mt-3 text-[1.7rem] font-semibold leading-[1.02] tracking-[-0.03em] text-black">
-            Above-the-fold clarity first
-          </h3>
-
-          <div className="mt-6 grid gap-5">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Problem
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Visitors need to grasp the product, offer, and angle within
-                seconds.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Decision
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Built the hero around one promise, one mechanism line, quick
-                benefit bullets, and a clearer bundle path.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Why it matters
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Better clarity reduces confusion and moves visitors toward
-                buying intent faster.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-[1.8rem] border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-            02
-          </p>
-
-          <h3 className="mt-3 text-[1.7rem] font-semibold leading-[1.02] tracking-[-0.03em] text-black">
-            Bundle choice needed guidance
-          </h3>
-
-          <div className="mt-6 grid gap-5">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Problem
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                When options feel equally weighted, shoppers hesitate and delay
-                selection.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Decision
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Made the 3-bottle option visually preferred, clarified savings,
-                and separated starter vs value options more clearly.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Why it matters
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Guided selection helps the page sell instead of leaving the user
-                to figure it out alone.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-[1.8rem] border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-            03
-          </p>
-
-          <h3 className="mt-3 text-[1.7rem] font-semibold leading-[1.02] tracking-[-0.03em] text-black">
-            Trust had to be layered
-          </h3>
-
-          <div className="mt-6 grid gap-5">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Problem
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Supplement buyers usually need repeated reassurance before they
-                feel ready to purchase.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Decision
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Spread trust across the page with ingredients, proof, guarantee
-                messaging, testing reassurance, and FAQ support.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Why it matters
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Trust is stronger when reinforced throughout the journey, not
-                isolated in one section.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-[1.8rem] border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-            04
-          </p>
-
-          <h3 className="mt-3 text-[1.7rem] font-semibold leading-[1.02] tracking-[-0.03em] text-black">
-            The page had to guide momentum
-          </h3>
-
-          <div className="mt-6 grid gap-5">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Problem
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                A clean layout alone is not enough. The page must reduce
-                uncertainty in the right order.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Decision
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Structured the flow around promise, benefits, why it works,
-                proof, usage, guarantee, and objections.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/42">
-                Why it matters
-              </p>
-              <p className="mt-2 text-sm leading-7 text-black/72">
-                Clear sequencing supports purchase momentum and gives each
-                section a conversion job.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-      <section className="border-y border-black/10 bg-[#fcfaf6]">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                Audit Thinking
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                What I would look to improve on a real supplement PDP.
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-black/72">
-                This is the kind of friction I look for when reviewing a product
-                page. These are not filler observations — they are the areas
-                most likely to influence understanding, trust, and purchase
-                momentum.
-              </p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {originalIssues.map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-[1.5rem] border border-black/10 bg-white p-4 shadow-sm"
-                >
-                  <p className="text-sm leading-6 text-black/74">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-black/10 bg-white/70">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                Section Strategy
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Each section has a defined conversion job.
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-black/72">
-                I do not add sections just to make a page longer. Every block is
-                there to move the customer one step closer to understanding,
-                trusting, and buying.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {sectionStrategy.map((section) => (
-                <div
-                  key={section.title}
-                  className="rounded-[1.6rem] border border-black/10 bg-[#fbfaf7] p-4 shadow-sm"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-                    {section.eyebrow}
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-black/92">
-                    {section.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-black/72">
-                    {section.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-black/10 bg-[#fcfaf6]">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                Gallery
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                A closer look at the product page design.
-              </h2>
-            </div>
-            <p className="max-w-xl text-base leading-7 text-black/68">
-              These previews show how the structure translates visually across
-              hero layout, trust-building sections, full-page flow, and mobile
-              scanning.
-            </p>
-          </div>
-
-          <div className="mt-10 space-y-6">
-            {[gallery[0], gallery[1], gallery[2], gallery[3]].map((item) => (
-              <div
-                key={item.title}
-                className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm"
-              >
-                <div className="border-b border-black/10 px-5 py-4 md:px-6 md:py-5">
-                  <h3 className="text-xl font-semibold text-black/92">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-6 text-black/62">
-                    {item.subtitle}
-                  </p>
-                </div>
-
-                <div className="w-full">
                   <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={1800}
-                    height={1400}
-                    className="h-auto w-full object-contain"
+                    src={section.image}
+                    alt={section.title}
+                    width={1200}
+                    height={3200}
+                    className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
                   />
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="border-y border-black/10 bg-[#1d1c19] text-white">
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/45">
-                Designed To Improve
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Honest positioning without fake performance claims.
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-white/70">
-                This is a self-initiated concept project, so I do not use
-                invented revenue numbers or fake conversion lifts. Instead, I
-                explain the buying outcomes the structure was intentionally
-                designed to support.
-              </p>
-            </div>
+              <div className="space-y-2 px-5 pb-5 pt-1">
+                <p className="text-sm leading-6 text-slate-600">{section.description}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {designedToImprove.map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4"
-                >
-                  <p className="text-base leading-7 text-white/85">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+export default function ShopifyAgencyPortfolioPage() {
+  return (
+    <main className="min-h-screen bg-slate-50 text-slate-950">
+      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_40%)]" />
+        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm text-slate-700 backdrop-blur">
+                <IconBriefcase />
+                Available for agency and white-label Shopify work
+              </div>
 
-      <section>
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                My Process
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                How I approach Shopify PDP work.
-              </h2>
-            </div>
+              <div className="space-y-5">
+                <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                  Shopify Liquid Developer for CRO-Focused PDPs and Landing Pages
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+                  I build conversion-focused Shopify product pages, landing pages,
+                  and custom sections in Liquid — with a strong focus on Dawn-based
+                  themes, mobile UX, offer clarity, trust-building, and clean
+                  implementation.
+                </p>
+              </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {process.map((item) => (
-                <div
-                  key={item.step}
-                  className="rounded-[1.6rem] border border-black/10 bg-white p-5 shadow-sm"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/38">
-                    {item.step}
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-black/92">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-black/72">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href="#projects">
+                    View Projects
+                    <span className="ml-2">
+                      <IconArrowRight />
+                    </span>
+                  </Link>
+                </Button>
 
-      <section>
-        <div className="mx-auto max-w-7xl px-6 py-18 md:px-10 md:py-24">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                What I Help With
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                The kind of PDP work brands can hire me for.
-              </h2>
-            </div>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="#contact">Work With Me</Link>
+                </Button>
+              </div>
 
-            <div className="space-y-6 text-base leading-7 text-black/72">
-              <p className="max-w-2xl text-base leading-7 text-black/70">
-                I help product brands build Shopify product pages with clearer
-                offer communication, stronger trust-building, smarter section
-                order, and better purchase flow.
-              </p>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                {services.map((service) => (
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  "Shopify PDP builds and redesigns",
+                  "Landing pages in Liquid",
+                  "Custom Dawn sections",
+                  "Mobile UX and conversion structure",
+                ].map((item) => (
                   <div
-                    key={service}
-                    className="rounded-full border border-black/10 bg-white px-5 py-4 shadow-sm"
+                    key={item}
+                    className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm"
                   >
-                    <p className="text-sm font-medium text-black/82">
-                      {service}
-                    </p>
+                    {item}
                   </div>
                 ))}
               </div>
             </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Card className="overflow-hidden border-slate-200/80">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
+                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
+                      <Image
+                        src="/gallery/mush-hero.png"
+                        alt="Mushroom supplement PDP preview"
+                        width={1200}
+                        height={1500}
+                        className="absolute left-0 top-0 h-auto w-full"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-slate-200/80">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
+                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
+                      <Image
+                        src="/gallery/green-hero.jpg"
+                        alt="Daily greens PDP preview"
+                        width={1200}
+                        height={1500}
+                        className="absolute left-0 top-0 h-auto w-full"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden border-slate-200/80 sm:col-span-2">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
+                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
+                      <Image
+                        src="/gallery/lp-heroo.png"
+                        alt="Hair growth landing page preview"
+                        width={1600}
+                        height={900}
+                        className="absolute left-0 top-0 h-auto w-full"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="pb-20 md:pb-28 scroll-mt-24">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="overflow-hidden rounded-[2.2rem] border border-black/10 bg-[linear-gradient(135deg,#e8ddd0_0%,#f8f5ef_50%,#e4ebe0_100%)] p-[1px] shadow-[0_20px_70px_rgba(0,0,0,0.08)]">
-            <div className="rounded-[2.15rem] bg-white px-6 py-10 md:px-10 md:py-14">
-              <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-black/55">
-                    Contact
-                  </p>
-                  <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                    Need a Shopify PDP built to sell more clearly and convert
-                    with more confidence?
-                  </h2>
-                  <p className="mt-5 max-w-2xl text-base leading-7 text-black/70">
-                    I work on Shopify product pages for product brands that need
-                    stronger offer clarity, better trust placement, improved
-                    bundle presentation, and cleaner purchase flow. The live
-                    demo is private and available on request.
-                  </p>
-                </div>
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
+        <SectionTitle
+          eyebrow="What I Help With"
+          title="Shopify execution support built for agencies and eCommerce brands"
+          text="My strongest lane is conversion-focused Shopify work: PDPs, landing pages, custom sections, and Dawn-based implementation with attention to mobile UX and buying flow."
+        />
 
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href="mailto:worgieelguide@gmail.com?subject=Shopify%20PDP%20Inquiry"
-                    className="rounded-full bg-[#171717] px-6 py-3 text-sm font-medium text-white transition hover:opacity-90"
-                  >
-                    Email Me
-                  </a>
-                  <a
-                    href="https://wa.me/263786735629"
-                    className="rounded-full border border-black/15 bg-white px-6 py-3 text-sm font-medium text-[#171717] transition hover:bg-black/5"
-                  >
-                    WhatsApp
-                  </a>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service) => (
+            <Card key={service} className="border-slate-200/80">
+              <CardContent className="flex items-start gap-4 p-6">
+                <div className="rounded-xl bg-slate-100 p-3">
+                  <IconLayers />
                 </div>
-              </div>
+                <p className="leading-7 text-slate-700">{service}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-              <div className="mt-8 flex flex-col gap-4 border-t border-black/8 pt-6 text-sm text-black/54 md:flex-row md:items-center md:justify-between">
-                <p>
-                  This case study is a self-initiated concept project created to
-                  demonstrate Shopify PDP design and CRO thinking for supplement
-                  brands.
-                </p>
-                <p className="font-medium text-black/75">
-                  Want access to the protected demo or a review of your current
-                  PDP? Message me.
-                </p>
-              </div>
+      <section className="mx-auto max-w-7xl px-6 pb-6 sm:px-8 sm:pb-8">
+        <section
+          id="projects"
+          className="rounded-[32px] border border-slate-200/70 bg-white px-6 py-8 shadow-[0_20px_60px_rgba(15,23,42,0.05)] sm:px-8 sm:py-10"
+        >
+          <SectionTitle
+            eyebrow="Featured Work"
+            title="Three Shopify builds positioned as specialist proof"
+            text="These projects are presented as conversion-focused Shopify work — not just visuals, but examples of how I think about hierarchy, trust, clarity, and implementation inside Dawn-based builds."
+          />
+
+          <div className="mt-6">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        </section>
+      </section>
+
+      <section className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <SectionTitle
+              eyebrow="How I Work"
+              title="A simple workflow that fits real Shopify delivery"
+              text="I combine structured Figma thinking with practical Shopify implementation so the output is not just cleaner visually, but easier to use and closer to conversion goals."
+            />
+
+            <div className="grid gap-4">
+              {workflow.map((step, index) => (
+                <Card key={step} className="border-slate-200/80">
+                  <CardContent className="flex items-start gap-4 p-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
+                      {index + 1}
+                    </div>
+                    <p className="pt-1 leading-7 text-slate-700">{step}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card className="border-slate-200/80">
+            <CardContent className="p-8 sm:p-10">
+              <div className="space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-xl bg-slate-100 p-3">
+                    <IconCode />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-slate-950">
+                    Agency / White-Label Support
+                  </h3>
+                </div>
+
+                <p className="leading-7 text-slate-600">
+                  I’m best suited for agencies that need a Shopify-focused
+                  execution partner who understands both implementation and
+                  conversion-oriented layout decisions.
+                </p>
+
+                <ul className="space-y-3 text-slate-700">
+                  {[
+                    "White-label Shopify development",
+                    "PDP and landing page implementation",
+                    "Dawn theme section builds",
+                    "Conversion-focused page refinements",
+                    "Mobile UX cleanup and layout polishing",
+                    "Ongoing Shopify support for agency delivery",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
+                        <IconCheck />
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-slate-200/80">
+            <CardContent className="p-8 sm:p-10">
+              <div className="space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-xl bg-slate-100 p-3">
+                    <IconLayout />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-slate-950">About</h3>
+                </div>
+
+                <p className="leading-7 text-slate-600">
+                  I’m a Shopify-focused developer specializing in Liquid-based
+                  product pages, landing pages, and conversion-focused section
+                  work. My approach combines Figma-led structure with practical
+                  Shopify implementation, with strong attention to mobile UX,
+                  hierarchy, clarity, and trust-building.
+                </p>
+
+                <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
+                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
+                      <IconPhone />
+                    </span>
+                    <p className="mt-2 text-sm text-slate-700">Mobile UX</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
+                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
+                      <IconShield />
+                    </span>
+                    <p className="mt-2 text-sm text-slate-700">Trust Structure</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
+                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
+                      <IconLayers />
+                    </span>
+                    <p className="mt-2 text-sm text-slate-700">Dawn Builds</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto max-w-5xl px-6 pb-20 sm:px-8 sm:pb-24">
+        <Card className="overflow-hidden border-slate-200/80 bg-white">
+          <CardContent className="p-0">
+            <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="bg-slate-950 p-8 text-white sm:p-10 lg:p-12">
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">
+                      Contact
+                    </p>
+
+                    <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                      Need help with a Shopify PDP, landing page, or Dawn-based build?
+                    </h2>
+
+                    <p className="text-base leading-7 text-slate-300 sm:text-lg">
+                      I help brands and agencies improve Shopify pages with cleaner structure,
+                      better hierarchy, stronger mobile UX, and more conversion-focused design.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <a
+                      href="https://wa.me/263786735629?text=Hi%20Worgan%2C%20I%20would%20like%20to%20discuss%20a%20Shopify%20project."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
+                    >
+                      <div className="space-y-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                          WhatsApp
+                        </p>
+                        <p className="text-lg font-semibold">Chat directly on WhatsApp</p>
+                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
+                          Fastest way to reach me for quick project discussions and immediate questions.
+                        </p>
+                        <p className="pt-1 text-sm font-medium">+263 786 735 629</p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="mailto:worgieelguide@gmail.com?subject=Shopify%20Project%20Inquiry"
+                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
+                    >
+                      <div className="space-y-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                          Email
+                        </p>
+                        <p className="text-lg font-semibold">Send a project brief</p>
+                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
+                          Best for detailed inquiries, store links, scope, and project requirements.
+                        </p>
+                        <p className="pt-1 text-sm font-medium break-all">
+                          worgieelguide@gmail.com
+                        </p>
+                      </div>
+                    </a>
+
+                    <a
+                      href="tel:+263786735629"
+                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
+                    >
+                      <div className="space-y-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                          Call
+                        </p>
+                        <p className="text-lg font-semibold">Book a direct call</p>
+                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
+                          Ideal for fast conversations if you already know what support you need.
+                        </p>
+                        <p className="pt-1 text-sm font-medium">+263 786 735 629</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-6">
+                    <p className="text-sm leading-6 text-slate-300">
+                      Available for freelance, contract, and white-label Shopify work.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-8 sm:p-10 lg:p-12">
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                      Project inquiry
+                    </p>
+                    <h3 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
+                      Tell me about your store or project
+                    </h3>
+                    <p className="text-base leading-7 text-slate-600">
+                      Use the form below, or contact me directly through WhatsApp, email, or call.
+                    </p>
+                  </div>
+
+                  <form
+                    action="https://formspree.io/f/yourformid"
+                    method="POST"
+                    className="space-y-4"
+                  >
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium text-slate-700">
+                          Name
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          placeholder="Your name"
+                          className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
+                          required
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium text-slate-700">
+                          Email
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="you@example.com"
+                          className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="service" className="text-sm font-medium text-slate-700">
+                        What do you need help with?
+                      </label>
+                      <input
+                        id="service"
+                        name="service"
+                        type="text"
+                        placeholder="Product page, landing page, CRO improvements, Dawn customization..."
+                        className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="storeUrl" className="text-sm font-medium text-slate-700">
+                        Store URL
+                      </label>
+                      <input
+                        id="storeUrl"
+                        name="storeUrl"
+                        type="url"
+                        placeholder="https://yourstore.com"
+                        className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-slate-700">
+                        Project details
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={6}
+                        placeholder="Tell me about your store, what needs improving, and what kind of support you need."
+                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
+                        required
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <button
+                        type="submit"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-slate-950 px-6 text-sm font-medium text-white transition-colors hover:bg-slate-800 sm:w-auto"
+                      >
+                        Send Inquiry
+                      </button>
+
+                      <a
+                        href="https://wa.me/263786735629?text=Hi%20Worgan%2C%20I%20would%20like%20to%20discuss%20a%20Shopify%20project."
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-xl border border-slate-300 px-6 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-50 sm:w-auto"
+                      >
+                        Message on WhatsApp
+                      </a>
+                    </div>
+                  </form>
+
+                  <div className="space-y-3 border-t border-slate-200 pt-6">
+                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        Response
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        I aim to reply as quickly as possible.
+                      </p>
+                    </div>
+
+                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        Support
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        Shopify PDPs, landing pages, Dawn customization, and CRO-focused improvements.
+                      </p>
+                    </div>
+
+                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        Work type
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">
+                        Freelance, contract, and white-label Shopify work.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </section>
     </main>
   );
