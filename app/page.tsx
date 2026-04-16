@@ -328,7 +328,7 @@ const projects = [
         title: "Proof + testimonials",
         description:
           "Adds credibility and keeps the offer grounded in social proof.",
-        image: "/gallery/lp.jpg",
+        image: "/gallery/ltt.jpg",
       },
       {
         title: "FAQ section",
@@ -616,7 +616,7 @@ export default function ShopifyAgencyPortfolioPage() {
                   <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
                     <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
                       <Image
-                        src="/gallery/green-hero.jpg"
+                        src="/gallery/g-h.jpg"
                         alt="Daily greens PDP preview"
                         width={1200}
                         height={1500}
