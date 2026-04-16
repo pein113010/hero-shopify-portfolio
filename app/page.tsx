@@ -460,8 +460,8 @@ function ProjectCard({
           <Card key={section.title} className="overflow-hidden border-slate-200/80">
             <CardContent className="p-0">
               <div className="p-3">
-                <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
+                <div className="relative overflow-visible rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 md:h-[32rem] md:overflow-y-auto md:overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md md:sticky md:top-0 md:z-10">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
                       {section.title}
                     </p>
