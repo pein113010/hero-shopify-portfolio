@@ -1,1089 +1,510 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
-type CardProps = React.HTMLAttributes<HTMLDivElement>;
-
-function Card({ className, ...props }: CardProps) {
-  return (
-    <div
-      className={cn(
-        "rounded-2xl border border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)]",
-        className || ""
-      )}
-      {...props}
-    />
-  );
-}
-
-function CardContent({ className, ...props }: CardProps) {
-  return <div className={className} {...props} />;
-}
-
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  asChild?: boolean;
-  variant?: "default" | "outline" | "secondary";
-  size?: "default" | "lg";
-  children: React.ReactNode;
-};
-
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  asChild,
-  children,
-  ...props
-}: ButtonProps) {
-  const base =
-    "inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
-  const variants = {
-    default: "bg-slate-950 text-white hover:bg-slate-800",
-    outline: "border border-slate-300 bg-white text-slate-950 hover:bg-slate-50",
-    secondary: "bg-white text-slate-950 hover:bg-slate-100",
-  };
-  const sizes = {
-    default: "h-10 px-4 py-2 text-sm",
-    lg: "h-12 px-6 text-sm",
-  };
-
-  if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<{ className?: string }>;
-    return React.cloneElement(child, {
-      className: cn(
-        base,
-        variants[variant],
-        sizes[size],
-        "rounded-none",
-        className || "",
-        child.props.className || ""
-      ),
-      ...props,
-    });
-  }
-
-  return (
-    <button
-      className={cn(base, variants[variant], sizes[size], "rounded-none", className || "")}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
-
-function IconArrowRight() {
-  return <span aria-hidden="true">→</span>;
-}
-
-function IconCheck() {
-  return <span aria-hidden="true">✓</span>;
-}
-
-function IconBriefcase() {
-  return <span aria-hidden="true">▣</span>;
-}
-
-function IconCode() {
-  return <span aria-hidden="true">⌘</span>;
-}
-
-function IconLayout() {
-  return <span aria-hidden="true">◫</span>;
-}
-
-function IconPhone() {
-  return <span aria-hidden="true">▭</span>;
-}
-
-function IconShield() {
-  return <span aria-hidden="true">⬒</span>;
-}
-
-function IconLayers() {
-  return <span aria-hidden="true">☰</span>;
-}
-
-function IconBolt() {
-  return <span aria-hidden="true">⚡</span>;
-}
-
-const topServices = [
-  "Shopify product pages",
-  "Landing pages",
-  "Custom Liquid sections",
-  "Mobile cleanup",
-];
-
-const serviceCards = [
-  {
-    title: "Product pages that sell more clearly",
-    text: "Cleaner hierarchy, stronger offer presentation, better trust flow, and more usable mobile layouts.",
-  },
-  {
-    title: "Landing pages built in custom Liquid",
-    text: "Focused pages for offers and campaigns, built cleanly without relying on bloated page builders.",
-  },
-  {
-    title: "Custom sections for Dawn-based themes",
-    text: "FAQ, guarantee, comparison, social proof, bundles, benefits, and other high-impact sections.",
-  },
-  {
-    title: "White-label support for agencies",
-    text: "Execution help for PDPs, landing pages, Dawn customization, and ongoing storefront refinements.",
-  },
-  {
-    title: "Mobile-first Shopify cleanup",
-    text: "Spacing, layout flow, CTA visibility, and section structure improved for better usability on smaller screens.",
-  },
-  {
-    title: "Offer and trust structure improvements",
-    text: "I help pages feel easier to buy from by making the core message, proof, and purchase journey clearer.",
-  },
-];
-
-const quickProof = [
-  "Built in Shopify Liquid",
-  "Dawn theme focused",
-  "Mobile-first thinking",
-  "Custom section work",
-];
-
-const workflow = [
-  "Review the product, offer, and current page structure",
-  "Improve hierarchy and page flow before building",
-  "Implement the page cleanly in Shopify Liquid on Dawn",
-  "Refine spacing, trust flow, and mobile presentation",
-  "Deliver a cleaner, easier-to-buy-from final page",
-];
+import {
+  ArrowRight,
+  CheckCircle2,
+  Eye,
+  MousePointerClick,
+  ShieldCheck,
+  ShoppingCart,
+  Sparkles,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
 
 const projects = [
   {
-    slug: "mushroom-supplement-pdp",
-    title: "Mushroom Supplement PDP",
-    subtitle: "Conversion-focused Shopify product page built in Liquid on Dawn.",
-    type: "Self-initiated Shopify concept",
-    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
-    summary:
-      "A supplement PDP designed to improve above-the-fold clarity, trust-building, bundle visibility, and educational flow.",
-    goal:
-      "Create a clearer buying experience for a supplement product by improving above-the-fold clarity, bundle presentation, trust-building, and educational flow.",
-    focus: [
-      "Clearer value proposition above the fold",
-      "Better bundle and offer visibility",
-      "Trust-building through testimonials, guarantee, and FAQ",
-      "Ingredient and benefit education",
-      "Simple routine section to support product understanding",
-      "Mobile-friendly section hierarchy",
-    ],
-    built: [
-      "Product hero with stronger message hierarchy",
-      "Bundle selection area with clearer offer framing",
-      "Benefits section",
-      "Ingredient / why-it-works section",
-      "Testimonial section",
-      "Routine / how-to-use section",
-      "Guarantee section",
-      "FAQ section",
-    ],
-    why:
-      "This page was structured to reduce hesitation, improve product understanding, and support faster buying decisions on both desktop and mobile.",
-    mainImage: "/gallery/mush-full.png",
-    mobileImage: "/gallery/ml.png",
-    sections: [
-      {
-        title: "Hero section",
-        description:
-          "Focused on clearer value proposition, stronger hierarchy, and faster product understanding.",
-        image: "/gallery/q.jpg",
-      },
-      {
-        title: "Bundle section",
-        description:
-          "Designed to improve offer clarity and make plan selection easier.",
-        image: "/gallery/b.jpg",
-      },
-      {
-        title: "Trust + proof section",
-        description:
-          "Uses testimonials and reassurance elements to reduce hesitation.",
-        image: "/gallery/r.jpg",
-      },
-      {
-        title: "FAQ / objection handling",
-        description:
-          "Structured to answer common buying questions and support conversion.",
-        image: "/gallery/f.jpg",
-      },
+    eyebrow: "Main Project",
+    title: "Supplement PDP First-Screen + Buying Flow Build",
+    category: "Shopify PDP / Subscription Offer",
+    image: "/portfolio/ag1dem.png",
+    rating: "8.5/10",
+    description:
+      "A Shopify product page concept focused on product media, subscription cards, CTA hierarchy, trust proof, gifts, guarantee, accordions, and buying confidence.",
+    problem:
+      "Most supplement PDPs make the buyer work too hard before they understand the product, the offer, and why it is safe to buy.",
+    solution:
+      "I structured the first screen around proof, product promise, offer selection, subscription value, CTA reassurance, and expandable support sections.",
+    points: [
+      "Review proof above the product title",
+      "Clear product promise and habit-based positioning",
+      "Subscription cards with savings and delivery logic",
+      "Gift/value stack before the CTA",
+      "Guarantee, shipping, and cancellation reassurance",
     ],
   },
   {
-    slug: "daily-greens-pdp",
-    title: "Daily Greens PDP",
-    subtitle:
-      "Educational Shopify PDP built in Liquid on Dawn for a supplement-style product.",
-    type: "Self-initiated Shopify concept",
-    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
-    summary:
-      "A product page built to make benefits, ingredients, and product differentiation easier to understand.",
-    goal:
-      "Create a product page that balances conversion with education by helping shoppers quickly understand benefits, ingredients, and product differentiation.",
-    focus: [
-      "Simpler product understanding",
-      "Comparison-based decision support",
-      "Ingredient and benefit education",
-      "Cleaner mobile flow",
-      "Review and FAQ integration",
-      "Stronger section hierarchy throughout the page",
-    ],
-    built: [
-      "Product hero section",
-      "Comparison / differentiation section",
-      "Benefits and ingredient sections",
-      "Social proof / review section",
-      "FAQ section",
-      "Supporting trust and information blocks",
-    ],
-    why:
-      "For products that need more explanation, structure matters. This concept was built to improve clarity, reduce confusion, and help the page do more of the selling work.",
-    mainImage: "/gallery/g-full.jpg",
-    mobileImage: "/gallery/g-full-m.jpg",
-    sections: [
-      {
-        title: "Hero section",
-        description:
-          "Introduces the product with stronger message clarity and cleaner hierarchy.",
-        image: "/gallery/g-h.jpg",
-      },
-      {
-        title: "Comparison section",
-        description:
-          "Helps shoppers understand product differentiation faster.",
-        image: "/gallery/gc.png",
-      },
-      {
-        title: "Ingredients / education",
-        description:
-          "Supports trust and product understanding through clearer explanation.",
-        image: "/gallery/gi.png",
-      },
-      {
-        title: "FAQ section",
-        description: "Handles hesitation and common buyer objections.",
-        image: "/gallery/gf.png",
-      },
+    eyebrow: "Best Transformation",
+    title: "Mobile PDP First-Screen Rebuild",
+    category: "Before / After Mobile PDP",
+    image: "/portfolio/plury-before-after.png",
+    rating: "9/10",
+    description:
+      "A mobile-first before/after rebuild showing how a basic product screen can become a stronger buying experience with trust, urgency, bundles, and clearer CTA structure.",
+    problem:
+      "The original mobile PDP had a simple product image, weak trust placement, basic quantity control, and little reason to choose a higher-value offer.",
+    solution:
+      "I redesigned the first screen to add stronger product presentation, proof, benefit chips, bundle selection, urgency, delivery timeline, and a more confident CTA.",
+    points: [
+      "Current vs updated comparison",
+      "Trustpilot/social proof close to the title",
+      "Benefit icons before the bundle area",
+      "Bundle selector designed to increase AOV",
+      "Delivery timeline below the CTA",
     ],
   },
   {
-    slug: "hair-growth-landing-page",
-    title: "Hair Growth Landing Page",
-    subtitle:
-      "Shopify landing page built in Liquid to support a direct-response style offer flow.",
-    type: "Self-initiated Shopify concept",
-    stack: ["Figma", "Shopify Liquid", "Dawn theme", "CSS", "JavaScript"],
-    summary:
-      "A focused landing page built to support a stronger offer journey, proof flow, and clearer package presentation.",
-    goal:
-      "Build a focused landing page that presents the offer clearly, supports the buying angle with proof and education, and guides visitors through a stronger conversion journey.",
-    focus: [
-      "Ad-to-page continuity",
-      "Clear offer and plan presentation",
-      "Visual proof and testimonials",
-      "Science / ingredient explanation",
-      "Subscription value communication",
-      "FAQ objection handling",
-    ],
-    built: [
-      "Hero section with offer framing",
-      "Plan / package selection area",
-      "Testimonials and proof sections",
-      "Science / ingredients section",
-      "How-it-works section",
-      "Blog / supporting content section",
-      "Subscription value section",
-      "FAQ section",
-    ],
-    why:
-      "Landing pages need momentum. This concept was structured to keep the visitor moving through proof, explanation, and offer clarity without unnecessary friction.",
-    mainImage: "/gallery/lpfull.jpg",
-    mobileImage: "/gallery/lm.jpg",
-    sections: [
-      {
-        title: "Hero section",
-        description:
-          "Frames the offer fast and gives the page a strong starting point.",
-        image: "/gallery/lh.jpg",
-      },
-      {
-        title: "Plan selection",
-        description:
-          "Makes pricing and package choice easier to understand.",
-        image: "/gallery/lp.jpg",
-      },
-      {
-        title: "Proof + testimonials",
-        description:
-          "Adds credibility and keeps the offer grounded in social proof.",
-        image: "/gallery/ltt.jpg",
-      },
-      {
-        title: "FAQ section",
-        description:
-          "Reduces hesitation and helps move visitors closer to action.",
-        image: "/gallery/lf.jpg",
-      },
+    eyebrow: "Buying Area Build",
+    title: "Laundry Detergent PDP Offer + Buying Area Build",
+    category: "Shopify PDP / Bundles / Add-ons",
+    image: "/portfolio/frey-laundry-pdp.png",
+    rating: "8/10 after cleanup",
+    description:
+      "A more complex product page example with scent selection, quantity cards, subscription vs one-time purchase, free shipping, guarantee, add-ons, testimonial, and benefit blocks.",
+    problem:
+      "The page has many useful conversion elements, but without clear hierarchy the buyer can feel overwhelmed by too many options at once.",
+    solution:
+      "I organized the buying flow from scent to quantity to plan to CTA, keeping trust and reassurance close to the decision point while making add-ons secondary.",
+    points: [
+      "Scent selector and selected scent description",
+      "Quantity cards with best-seller/best-value emphasis",
+      "Subscription card with savings and benefits",
+      "Free shipping and guarantee near CTA",
+      "Add-ons positioned after the primary buy action",
     ],
   },
 ];
 
-function SectionTitle({
-  eyebrow,
-  title,
-  text,
-}: {
-  eyebrow: string;
-  title: string;
-  text?: string;
-}) {
+const skills = [
+  "Shopify Liquid",
+  "Custom CSS",
+  "JavaScript",
+  "Dawn / OS 2.0 sections",
+  "Mobile-first PDP layouts",
+  "Offer box structure",
+  "Bundle selectors",
+  "Subscription UI",
+  "Trust and guarantee sections",
+  "Figma-to-Shopify implementation",
+];
+
+function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <div className="max-w-3xl space-y-3">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-        {eyebrow}
-      </p>
-      <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-        {title}
-      </h2>
-      {text ? (
-        <p className="text-base leading-7 text-slate-600 sm:text-lg">{text}</p>
-      ) : null}
+    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+      {children}
+    </span>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800">
+      <Sparkles className="h-4 w-4" />
+      {children}
     </div>
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[number];
-  index: number;
-}) {
+export default function ShopifyPdpPortfolioPage() {
   return (
-    <section
-      id={project.slug}
-      className="scroll-mt-24 border-t border-slate-200/80 py-16 sm:py-20"
-    >
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-        <div className="space-y-6">
-          <div className="space-y-4">
-            <div className="inline-flex rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-              Project {index + 1}
+    <main className="min-h-screen bg-[#f7f8f5] text-slate-950">
+      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
+        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-emerald-100/60 blur-3xl" />
+        <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-amber-100/70 blur-3xl" />
+
+        <div className="relative mx-auto grid max-w-7xl items-stretch gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:py-24">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
+              Shopify PDP First-Screen Specialist
             </div>
 
-            <div className="space-y-3">
-              <h3 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                {project.title}
-              </h3>
-              <p className="text-lg text-slate-600">{project.subtitle}</p>
-              <p className="max-w-2xl leading-7 text-slate-700">{project.summary}</p>
+            <h1 className="max-w-4xl text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-6xl lg:text-7xl">
+              Product pages that make the buying decision clearer.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+              I redesign and build Shopify product page first screens — product
+              media, trust proof, offer boxes, CTA sections, subscriptions,
+              bundles, and mobile layouts — using custom Liquid/CSS.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
+              >
+                View PDP Examples <ArrowRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-4 text-sm font-black text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-950"
+              >
+                Request First-Screen Review
+              </a>
             </div>
 
-            <div className="flex flex-wrap gap-2 text-sm text-slate-600">
-              <span className="rounded-full bg-slate-100 px-3 py-1">{project.type}</span>
-              {project.stack.map((item) => (
-                <span key={item} className="rounded-full bg-slate-100 px-3 py-1">
-                  {item}
-                </span>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {[
+                ["3", "Focused PDP examples"],
+                ["1", "Conversion framework"],
+                ["Liquid", "Shopify implementation"],
+                ["Mobile", "First-screen structure"],
+              ].map(([value, label]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+                >
+                  <div className="text-xl font-black text-slate-950">
+                    {value}
+                  </div>
+                  <div className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                    {label}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
 
-          <Card className="border-slate-200/80">
-            <CardContent className="p-6 sm:p-8">
-              <div className="space-y-6">
+          <div className="flex rounded-[2rem] border border-slate-200 bg-slate-50 p-3 shadow-2xl">
+            <div className="flex min-h-full flex-1 flex-col rounded-[1.5rem] bg-white p-4 shadow-sm">
+              <div className="mb-4 flex items-center justify-between gap-4">
                 <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Goal
-                  </h4>
-                  <p className="mt-2 leading-7 text-slate-700">{project.goal}</p>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    What I Focused On
-                  </h4>
-                  <ul className="mt-3 space-y-3">
-                    {project.focus.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-slate-700">
-                        <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
-                          <IconCheck />
-                        </span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    What I Built
-                  </h4>
-                  <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-                    {project.built.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Why It Matters
-                  </h4>
-                  <p className="mt-2 leading-7 text-slate-700">{project.why}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="space-y-6 lg:sticky lg:top-24">
-          <Card className="overflow-hidden border-slate-200/80">
-            <CardContent className="p-0">
-              <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
-                    Desktop layout
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                    Featured Case Study
                   </p>
+                  <h2 className="mt-1 text-xl font-black tracking-tight text-slate-950">
+                    Supplement PDP Build
+                  </h2>
                 </div>
-
-                <Image
-                  src={project.mainImage}
-                  alt={`${project.title} desktop preview`}
-                  width={1200}
-                  height={3200}
-                  className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden border-slate-200/80">
-            <CardContent className="p-0">
-              <div className="relative h-[32rem] overflow-y-auto overflow-x-hidden rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                <div className="sticky top-0 z-10 mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
-                    Mobile layout
-                  </p>
-                </div>
-
-                <Image
-                  src={project.mobileImage}
-                  alt={`${project.title} mobile preview`}
-                  width={1200}
-                  height={3200}
-                  className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        {project.sections.map((section) => (
-          <Card key={section.title} className="overflow-hidden border-slate-200/80">
-            <CardContent className="p-0">
-              <div className="p-3">
-                <div className="relative overflow-visible rounded-[18px] bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3 md:h-[32rem] md:overflow-y-auto md:overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                  <div className="mb-3 rounded-xl border border-slate-200/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md md:sticky md:top-0 md:z-10">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-700">
-                      {section.title}
-                    </p>
-                  </div>
-
-                  <Image
-                    src={section.image}
-                    alt={section.title}
-                    width={1200}
-                    height={3200}
-                    className="block h-auto w-full rounded-xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]"
-                  />
+                <div className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800">
+                  Main Proof
                 </div>
               </div>
 
-              <div className="space-y-2 px-5 pb-5 pt-1">
-                <p className="text-sm leading-6 text-slate-600">{section.description}</p>
+             <div className="flex-1 max-h-[520px] overflow-hidden rounded-2xl border border-slate-200">
+  <Image
+    src="/portfolio/ag1dem.png"
+    alt="Supplement PDP First-Screen Build"
+    width={1200}
+    height={1600}
+    priority
+    className="h-full w-full object-cover object-top"
+  />
+</div>
+
+              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold text-slate-600">
+                <div className="rounded-xl bg-slate-50 p-3">Trust Proof</div>
+                <div className="rounded-xl bg-slate-50 p-3">Offer Cards</div>
+                <div className="rounded-xl bg-slate-50 p-3">CTA Flow</div>
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export default function ShopifyAgencyPortfolioPage() {
-  return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
-      <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.18),transparent_40%)]" />
-        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28">
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm text-slate-700 backdrop-blur">
-                <IconBriefcase />
-                Available for freelance and white-label Shopify work
-              </div>
-
-              <div className="space-y-5">
-                <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                  Shopify product pages and landing pages that look cleaner and sell more clearly
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-                  I build Shopify product pages, landing pages, and custom Liquid sections
-                  with a focus on mobile UX, trust, offer clarity, and clean Dawn-based implementation.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {topServices.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg">
-                  <Link href="#projects">
-                    View Projects
-                    <span className="ml-2">
-                      <IconArrowRight />
-                    </span>
-                  </Link>
-                </Button>
-
-                <Button asChild size="lg" variant="outline">
-                  <Link href="#contact">Start a Project</Link>
-                </Button>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2 lg:max-w-2xl">
-                {quickProof.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 shadow-sm"
-                  >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-slate-100 text-slate-900">
-                      <IconCheck />
-                    </span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Card className="overflow-hidden border-slate-200/80">
-                <CardContent className="p-0">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
-                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
-                      <Image
-                        src="/gallery/mush-hero.png"
-                        alt="Mushroom supplement PDP preview"
-                        width={1200}
-                        height={1500}
-                        className="absolute left-0 top-0 h-auto w-full"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden border-slate-200/80">
-                <CardContent className="p-0">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
-                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
-                      <Image
-                        src="/gallery/g-h.jpg"
-                        alt="Daily greens PDP preview"
-                        width={1200}
-                        height={1500}
-                        className="absolute left-0 top-0 h-auto w-full"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="overflow-hidden border-slate-200/80 sm:col-span-2">
-                <CardContent className="p-0">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-b from-slate-200 via-slate-100 to-white p-3">
-                    <div className="relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.10)]">
-                      <Image
-                        src="/gallery/lp-heroo.png"
-                        alt="Hair growth landing page preview"
-                        width={1600}
-                        height={900}
-                        className="absolute left-0 top-0 h-auto w-full"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 sm:py-16">
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card className="border-slate-200/80">
-              <CardContent className="flex items-start gap-4 p-6">
-                <div className="rounded-xl bg-slate-100 p-3">
-                  <IconLayout />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-slate-950">Cleaner page structure</h3>
-                  <p className="leading-7 text-slate-600">
-                    I help Shopify pages feel easier to understand and easier to buy from.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200/80">
-              <CardContent className="flex items-start gap-4 p-6">
-                <div className="rounded-xl bg-slate-100 p-3">
-                  <IconPhone />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-slate-950">Better mobile UX</h3>
-                  <p className="leading-7 text-slate-600">
-                    Spacing, hierarchy, CTA flow, and section order improved for smaller screens.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200/80">
-              <CardContent className="flex items-start gap-4 p-6">
-                <div className="rounded-xl bg-slate-100 p-3">
-                  <IconShield />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-slate-950">Stronger trust flow</h3>
-                  <p className="leading-7 text-slate-600">
-                    I build FAQ, guarantee, proof, comparison, and reassurance sections that support the buying decision.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+      <section className="border-b border-slate-200 bg-slate-950 px-5 py-5 text-white md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm font-bold text-slate-300">
+            Focused on the product page area where customers decide whether to
+            trust, continue, or buy.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Badge>Product media</Badge>
+            <Badge>Trust proof</Badge>
+            <Badge>Offer box</Badge>
+            <Badge>CTA</Badge>
+            <Badge>Mobile layout</Badge>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
-        <SectionTitle
-          eyebrow="What I Help With"
-          title="Shopify support for brands and agencies that need pages improved properly"
-          text="My strongest work is Shopify product pages, landing pages, custom Liquid sections, and Dawn-based front-end implementation with close attention to mobile presentation and buying flow."
-        />
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <SectionLabel>What I Fix</SectionLabel>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {serviceCards.map((service) => (
-            <Card key={service.title} className="border-slate-200/80">
-              <CardContent className="space-y-3 p-6">
-                <div className="inline-flex rounded-xl bg-slate-100 p-3 text-slate-900">
-                  <IconLayers />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-950">{service.title}</h3>
-                <p className="leading-7 text-slate-600">{service.text}</p>
-              </CardContent>
-            </Card>
+        <div className="grid gap-4 md:grid-cols-4">
+          {[
+            {
+              icon: Eye,
+              title: "Unclear first impression",
+              text: "Customers should understand the product, result, and reason to keep reading within seconds.",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Trust too low on page",
+              text: "Reviews, guarantee, shipping, proof, and safety should support the CTA, not hide below it.",
+            },
+            {
+              icon: ShoppingCart,
+              title: "Weak buying area",
+              text: "Variants, bundles, subscriptions, savings, and gifts need a clean hierarchy.",
+            },
+            {
+              icon: MousePointerClick,
+              title: "Mobile friction",
+              text: "Spacing, CTA visibility, hierarchy, and offer clarity matter most on mobile PDPs.",
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <item.icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-black tracking-tight text-slate-950">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                {item.text}
+              </p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-6 sm:px-8 sm:pb-8">
-        <section
-          id="projects"
-          className="rounded-[32px] border border-slate-200/70 bg-white px-6 py-8 shadow-[0_20px_60px_rgba(15,23,42,0.05)] sm:px-8 sm:py-10"
-        >
-          <SectionTitle
-            eyebrow="Featured Work"
-            title="Selected Shopify projects"
-            text="Three self-initiated builds that show how I approach hierarchy, trust, clarity, and Shopify Liquid implementation."
-          />
+      <section
+        id="projects"
+        className="border-y border-slate-200 bg-white px-5 py-16 md:px-8"
+      >
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel>Selected Portfolio Work</SectionLabel>
 
-          <div className="mt-6">
+          <div className="mb-10">
+            <h2 className="max-w-3xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+              Three examples that prove one focused offer.
+            </h2>
+            <p className="mt-4 max-w-2xl text-slate-600">
+              Each project is selected to show a different part of PDP
+              conversion: full buying flow, mobile transformation, and complex
+              offer structure.
+            </p>
+          </div>
+
+          <div className="space-y-10">
             {projects.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
+              <article
+                key={project.title}
+                className="overflow-hidden rounded-[2rem] border border-slate-200 bg-[#f7f8f5] shadow-sm"
+              >
+                <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+                  <div className="bg-white p-4 md:p-6">
+                    <div className="max-h-[680px] overflow-y-auto rounded-[1.5rem] border border-slate-200 bg-slate-100 shadow-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={1200}
+                        height={1600}
+                        className="h-auto w-full object-contain object-top"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-6 md:p-10">
+                    <div className="mb-5 flex flex-wrap items-center gap-3">
+                      <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white">
+                        0{index + 1}
+                      </span>
+                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800">
+                        {project.eyebrow}
+                      </span>
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600 shadow-sm">
+                        {project.rating}
+                      </span>
+                    </div>
+
+                    <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
+                      {project.category}
+                    </p>
+                    <h3 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-950 md:text-4xl">
+                      {project.title}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-8 grid gap-4 md:grid-cols-2">
+                      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <p className="text-xs font-black uppercase tracking-[0.16em] text-red-500">
+                          Problem
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                          {project.problem}
+                        </p>
+                      </div>
+                      <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-600">
+                          Solution
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-slate-600">
+                          {project.solution}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                      <p className="mb-4 text-sm font-black text-slate-950">
+                        What this proves
+                      </p>
+                      <div className="grid gap-3">
+                        {project.points.map((point) => (
+                          <div
+                            key={point}
+                            className="flex gap-3 text-sm font-semibold text-slate-700"
+                          >
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                            <span>{point}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
-        </section>
+        </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <SectionTitle
-              eyebrow="How I Work"
-              title="A practical process for Shopify delivery"
-              text="I combine structured page thinking with practical Shopify implementation so the final output is cleaner, more usable, and easier to build on."
-            />
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <SectionLabel>My PDP Framework</SectionLabel>
 
-            <div className="grid gap-4">
-              {workflow.map((step, index) => (
-                <Card key={step} className="border-slate-200/80">
-                  <CardContent className="flex items-start gap-4 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
-                      {index + 1}
-                    </div>
-                    <p className="pt-1 leading-7 text-slate-700">{step}</p>
-                  </CardContent>
-                </Card>
+        <div className="max-w-4xl">
+          <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
+            I structure the first screen around the buying decision.
+          </h2>
+
+          <p className="mt-5 text-base leading-7 text-slate-600">
+            Before designing or coding, I map the section so every element has a
+            job: build trust, explain the promise, make the offer clear, reduce
+            risk, and push the customer toward the next action.
+          </p>
+        </div>
+
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
+          <Image
+            src="/portfolio/pdp-framework.png"
+            alt="Shopify PDP First-Screen Framework"
+            width={1600}
+            height={1000}
+            className="h-auto w-full rounded-2xl object-contain"
+          />
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-white px-5 py-16 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel>Built With</SectionLabel>
+
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
+                Design thinking + Shopify implementation.
+              </h2>
+              <p className="mt-5 text-base leading-7 text-slate-600">
+                These examples are not just mockups. They are built around
+                Shopify section logic: editable content, mobile spacing, custom
+                Liquid, CSS, JavaScript where needed, and clean buying flows.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-2xl border border-slate-200 bg-[#f7f8f5] px-4 py-3 text-sm font-bold text-slate-700 shadow-sm"
+                >
+                  {skill}
+                </span>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Card className="border-slate-200/80">
-            <CardContent className="p-8 sm:p-10">
-              <div className="space-y-5">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-slate-100 p-3">
-                    <IconCode />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-slate-950">
-                    Why clients hire me
-                  </h3>
-                </div>
-
-                <p className="leading-7 text-slate-600">
-                  I’m best suited for Shopify work where the goal is not just to make the page look better,
-                  but to make it clearer, cleaner, and easier to buy from.
-                </p>
-
-                <ul className="space-y-3 text-slate-700">
-                  {[
-                    "Custom Liquid builds instead of bloated page-builder output",
-                    "Strong attention to mobile hierarchy and section flow",
-                    "Dawn theme familiarity and custom section implementation",
-                    "Useful support for PDPs, landing pages, and high-impact page sections",
-                    "White-label availability for agencies needing execution help",
-                    "Practical focus on clarity, trust, and offer presentation",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
-                        <IconCheck />
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+        <div className="overflow-hidden rounded-[2rem] bg-slate-950 p-6 text-white shadow-2xl md:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white">
+                <Zap className="h-4 w-4 text-amber-300" />
+                Focused Shopify PDP Offer
               </div>
-            </CardContent>
-          </Card>
 
-          <Card className="border-slate-200/80">
-            <CardContent className="p-8 sm:p-10">
-              <div className="space-y-5">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-slate-100 p-3">
-                    <IconBolt />
+              <h2 className="max-w-3xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+                I rebuild the product page first screen first.
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300">
+                Instead of starting with a full-store redesign, I focus on the
+                section where buyers decide whether to trust the product,
+                understand the offer, and click add to cart.
+              </p>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+              <h3 className="text-xl font-black">
+                First-Screen PDP Rebuild includes:
+              </h3>
+              <div className="mt-5 grid gap-3">
+                {[
+                  "Product media layout",
+                  "Trust proof placement",
+                  "Product promise and benefit bullets",
+                  "Offer / bundle / subscription box",
+                  "CTA, guarantee, shipping reassurance",
+                  "Mobile responsive Liquid/CSS build",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 text-sm font-semibold text-slate-200"
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-emerald-300" />
+                    {item}
                   </div>
-                  <h3 className="text-2xl font-semibold text-slate-950">Best-fit work</h3>
-                </div>
-
-                <p className="leading-7 text-slate-600">
-                  The strongest fit for me is Shopify work where structure, page flow, and front-end execution matter.
-                </p>
-
-                <div className="grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
-                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
-                      <IconPhone />
-                    </span>
-                    <p className="mt-2 text-sm text-slate-700">Mobile UX</p>
-                  </div>
-
-                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
-                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
-                      <IconShield />
-                    </span>
-                    <p className="mt-2 text-sm text-slate-700">Trust Sections</p>
-                  </div>
-
-                  <div className="rounded-2xl border border-slate-200 p-4 text-center">
-                    <span className="mx-auto inline-flex h-5 w-5 items-center justify-center">
-                      <IconLayers />
-                    </span>
-                    <p className="mt-2 text-sm text-slate-700">Dawn Builds</p>
-                  </div>
-                </div>
-
-                <ul className="space-y-3 border-t border-slate-200 pt-5 text-slate-700">
-                  {[
-                    "Shopify product page redesigns",
-                    "Landing page builds in Liquid",
-                    "FAQ, guarantee, comparison, and proof sections",
-                    "Mobile cleanup and layout refinement",
-                    "Agency white-label Shopify support",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center text-slate-900">
-                        <IconCheck />
-                      </span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-5xl px-6 pb-20 sm:px-8 sm:pb-24">
-        <Card className="overflow-hidden border-slate-200/80 bg-white">
-          <CardContent className="p-0">
-            <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="bg-slate-950 p-8 text-white sm:p-10 lg:p-12">
-                <div className="space-y-8">
-                  <div className="space-y-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">
-                      Contact
-                    </p>
+      <section id="contact" className="px-5 pb-16 md:px-8">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-8 text-center shadow-sm md:p-12">
+          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-800">
+            <TrendingUp className="h-6 w-6" />
+          </div>
 
-                    <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                      Need help with a Shopify product page, landing page, or custom section build?
-                    </h2>
+          <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
+            Want me to review your product page first screen?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Send me a Shopify product page link and I’ll point out the first
+            area I’d improve around trust, offer clarity, CTA, and mobile buying
+            flow.
+          </p>
 
-                    <p className="text-base leading-7 text-slate-300 sm:text-lg">
-                      I help brands and agencies improve Shopify pages with cleaner structure,
-                      better hierarchy, stronger mobile UX, and better front-end execution.
-                    </p>
-                  </div>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a
+              href="mailto:worgieelguide@gmail.com?subject=Shopify PDP First-Screen Review"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
+            >
+              Send Product Page Link <ArrowRight className="h-4 w-4" />
+            </a>
 
-                  <div className="space-y-4">
-                    <a
-                      href="https://wa.me/263786735629?text=Hi%20Worgan%2C%20I%20would%20like%20to%20discuss%20a%20Shopify%20project."
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
-                    >
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
-                          WhatsApp
-                        </p>
-                        <p className="text-lg font-semibold">Chat directly on WhatsApp</p>
-                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
-                          Fastest way to reach me for quick project discussions and immediate questions.
-                        </p>
-                        <p className="pt-1 text-sm font-medium">+263 786 735 629</p>
-                      </div>
-                    </a>
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-4 text-sm font-black text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-950"
+            >
+              View Examples Again
+            </a>
+          </div>
 
-                    <a
-                      href="mailto:worgieelguide@gmail.com?subject=Shopify%20Project%20Inquiry"
-                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
-                    >
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
-                          Email
-                        </p>
-                        <p className="text-lg font-semibold">Send a project brief</p>
-                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
-                          Best for detailed inquiries, store links, scope, and project requirements.
-                        </p>
-                        <p className="pt-1 text-sm font-medium break-all">
-                          worgieelguide@gmail.com
-                        </p>
-                      </div>
-                    </a>
-
-                    <a
-                      href="tel:+263786735629"
-                      className="block w-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white hover:text-slate-950"
-                    >
-                      <div className="space-y-2">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
-                          Call
-                        </p>
-                        <p className="text-lg font-semibold">Book a direct call</p>
-                        <p className="text-sm leading-6 text-slate-300 hover:text-inherit">
-                          Ideal for fast conversations if you already know what support you need.
-                        </p>
-                        <p className="pt-1 text-sm font-medium">+263 786 735 629</p>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div className="border-t border-white/10 pt-6">
-                    <p className="text-sm leading-6 text-slate-300">
-                      Available for freelance, contract, and white-label Shopify work.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-8 sm:p-10 lg:p-12">
-                <div className="space-y-6">
-                  <div className="space-y-3">
-                    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                      Project inquiry
-                    </p>
-                    <h3 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-                      Tell me about your store or project
-                    </h3>
-                    <p className="text-base leading-7 text-slate-600">
-                      Use the form below, or contact me directly through WhatsApp, email, or call.
-                    </p>
-                  </div>
-
-                  <form
-                    action="https://formspree.io/f/yourformid"
-                    method="POST"
-                    className="space-y-4"
-                  >
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-slate-700">
-                          Name
-                        </label>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          placeholder="Your name"
-                          className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
-                          required
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-slate-700">
-                          Email
-                        </label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="you@example.com"
-                          className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="service" className="text-sm font-medium text-slate-700">
-                        What do you need help with?
-                      </label>
-                      <input
-                        id="service"
-                        name="service"
-                        type="text"
-                        placeholder="Product page, landing page, custom section, mobile cleanup..."
-                        className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="storeUrl" className="text-sm font-medium text-slate-700">
-                        Store URL
-                      </label>
-                      <input
-                        id="storeUrl"
-                        name="storeUrl"
-                        type="url"
-                        placeholder="https://yourstore.com"
-                        className="h-12 w-full rounded-xl border border-slate-300 px-4 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-slate-700">
-                        Project details
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        placeholder="Tell me what needs improving and what kind of Shopify support you need."
-                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950"
-                        required
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                      <button
-                        type="submit"
-                        className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-slate-950 px-6 text-sm font-medium text-white transition-colors hover:bg-slate-800 sm:w-auto"
-                      >
-                        Send Inquiry
-                      </button>
-
-                      <a
-                        href="https://wa.me/263786735629?text=Hi%20Worgan%2C%20I%20would%20like%20to%20discuss%20a%20Shopify%20project."
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-12 w-full items-center justify-center rounded-xl border border-slate-300 px-6 text-sm font-medium text-slate-950 transition-colors hover:bg-slate-50 sm:w-auto"
-                      >
-                        Message on WhatsApp
-                      </a>
-                    </div>
-                  </form>
-
-                  <div className="space-y-3 border-t border-slate-200 pt-6">
-                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                        Response
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-slate-700">
-                        I aim to reply as quickly as possible.
-                      </p>
-                    </div>
-
-                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                        Support
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-slate-700">
-                        Shopify product pages, landing pages, custom sections, Dawn customization, and front-end page improvements.
-                      </p>
-                    </div>
-
-                    <div className="w-full rounded-2xl border border-slate-200 p-4 sm:p-5">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                        Work type
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-slate-700">
-                        Freelance, contract, and white-label Shopify work.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+          <p className="mt-6 text-xs font-semibold text-slate-400">
+            Demo Shopify PDP builds created to show Liquid/CSS implementation
+            and conversion-focused product page structure.
+          </p>
+        </div>
       </section>
     </main>
   );
