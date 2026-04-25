@@ -14,63 +14,60 @@ import {
 
 const projects = [
   {
-    eyebrow: "Main Project",
+    eyebrow: "Main PDP Example",
     title: "Supplement PDP First-Screen + Buying Flow Build",
-    category: "Shopify PDP / Subscription Offer",
+    category: "Shopify PDP / Hero / Subscription Offer",
     image: "/portfolio/ag1dem.png",
-    rating: "8.5/10",
     description:
-      "A Shopify product page concept focused on product media, subscription cards, CTA hierarchy, trust proof, gifts, guarantee, accordions, and buying confidence.",
+      "A Shopify product page first-screen build focused on product media, trust proof, subscription cards, CTA hierarchy, gifts, guarantee, and mobile buying confidence.",
     problem:
-      "Most supplement PDPs make the buyer work too hard before they understand the product, the offer, and why it is safe to buy.",
+      "The first screen needed to make the product promise, trust signals, and buying options easier to understand before the customer scrolls.",
     solution:
-      "I structured the first screen around proof, product promise, offer selection, subscription value, CTA reassurance, and expandable support sections.",
+      "I rebuilt the section around clear product positioning, proof near the CTA, subscription value, offer selection, and reassurance around shipping, guarantee, and cancellation.",
     points: [
-      "Review proof above the product title",
-      "Clear product promise and habit-based positioning",
-      "Subscription cards with savings and delivery logic",
-      "Gift/value stack before the CTA",
-      "Guarantee, shipping, and cancellation reassurance",
+      "Product promise made clearer above the buying area",
+      "Review proof placed close to the product title",
+      "Subscription cards structured with savings and delivery logic",
+      "Gift/value stack positioned before the CTA",
+      "Guarantee, shipping, and cancellation reassurance near the decision point",
     ],
   },
   {
-    eyebrow: "Best Transformation",
+    eyebrow: "Mobile Before / After",
     title: "Mobile PDP First-Screen Rebuild",
     category: "Before / After Mobile PDP",
     image: "/portfolio/plury-before-after.png",
-    rating: "9/10",
     description:
-      "A mobile-first before/after rebuild showing how a basic product screen can become a stronger buying experience with trust, urgency, bundles, and clearer CTA structure.",
+      "A mobile-first before/after rebuild showing how a basic product screen can become a stronger buying experience with clearer trust, benefits, bundles, and CTA structure.",
     problem:
-      "The original mobile PDP had a simple product image, weak trust placement, basic quantity control, and little reason to choose a higher-value offer.",
+      "The original mobile PDP felt basic. It had weak trust placement, limited product persuasion, and little reason for the customer to choose a higher-value offer.",
     solution:
-      "I redesigned the first screen to add stronger product presentation, proof, benefit chips, bundle selection, urgency, delivery timeline, and a more confident CTA.",
+      "I redesigned the first screen to improve product presentation, proof, benefit chips, bundle selection, urgency, delivery reassurance, and CTA confidence.",
     points: [
-      "Current vs updated comparison",
-      "Trustpilot/social proof close to the title",
-      "Benefit icons before the bundle area",
-      "Bundle selector designed to increase AOV",
-      "Delivery timeline below the CTA",
+      "Clear current vs improved mobile comparison",
+      "Trustpilot/social proof placed close to the title",
+      "Benefit icons added before the buying area",
+      "Bundle selector designed to make higher-value options clearer",
+      "Delivery timeline placed below the CTA for reassurance",
     ],
   },
   {
-    eyebrow: "Buying Area Build",
+    eyebrow: "Offer Box Example",
     title: "Laundry Detergent PDP Offer + Buying Area Build",
     category: "Shopify PDP / Bundles / Add-ons",
     image: "/portfolio/frey-laundry-pdp.png",
-    rating: "8/10 after cleanup",
     description:
-      "A more complex product page example with scent selection, quantity cards, subscription vs one-time purchase, free shipping, guarantee, add-ons, testimonial, and benefit blocks.",
+      "A more complex Shopify product page example with scent selection, quantity cards, subscription vs one-time purchase, shipping reassurance, guarantee, add-ons, and benefit blocks.",
     problem:
-      "The page has many useful conversion elements, but without clear hierarchy the buyer can feel overwhelmed by too many options at once.",
+      "The buying area had many useful conversion elements, but too many options at once can overwhelm customers when the hierarchy is not clear.",
     solution:
-      "I organized the buying flow from scent to quantity to plan to CTA, keeping trust and reassurance close to the decision point while making add-ons secondary.",
+      "I organized the flow from scent to quantity to purchase plan to CTA, keeping trust and reassurance close to the decision while making add-ons secondary.",
     points: [
-      "Scent selector and selected scent description",
-      "Quantity cards with best-seller/best-value emphasis",
-      "Subscription card with savings and benefits",
-      "Free shipping and guarantee near CTA",
-      "Add-ons positioned after the primary buy action",
+      "Scent selector with selected scent description",
+      "Quantity cards with best-seller and best-value emphasis",
+      "Subscription card with savings and benefit logic",
+      "Free shipping and guarantee placed near the CTA",
+      "Add-ons positioned after the primary buying decision",
     ],
   },
 ];
@@ -124,9 +121,10 @@ export default function ShopifyPdpPortfolioPage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              I redesign and build Shopify product page first screens — product
-              media, trust proof, offer boxes, CTA sections, subscriptions,
-              bundles, and mobile layouts — using custom Liquid/CSS.
+              I redesign and build the first screen of Shopify product pages —
+              product media, trust proof, offer boxes, CTA sections,
+              subscriptions, bundles, and mobile layouts — using custom
+              Liquid/CSS.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -141,16 +139,16 @@ export default function ShopifyPdpPortfolioPage() {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-4 text-sm font-black text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-950"
               >
-                Request First-Screen Review
+                Send Product Page Link
               </a>
             </div>
 
             <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               {[
-                ["3", "Focused PDP examples"],
-                ["1", "Conversion framework"],
-                ["Liquid", "Shopify implementation"],
-                ["Mobile", "First-screen structure"],
+                ["3", "PDP examples"],
+                ["1", "Focused service"],
+                ["Liquid", "Shopify build"],
+                ["Mobile", "First-screen layout"],
               ].map(([value, label]) => (
                 <div
                   key={label}
@@ -172,10 +170,10 @@ export default function ShopifyPdpPortfolioPage() {
               <div className="mb-4 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
-                    Featured Case Study
+                    Featured PDP Example
                   </p>
                   <h2 className="mt-1 text-xl font-black tracking-tight text-slate-950">
-                    Supplement PDP Build
+                    Supplement First-Screen Build
                   </h2>
                 </div>
                 <div className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800">
@@ -183,16 +181,16 @@ export default function ShopifyPdpPortfolioPage() {
                 </div>
               </div>
 
-             <div className="flex-1 max-h-[520px] overflow-hidden rounded-2xl border border-slate-200">
-  <Image
-    src="/portfolio/ag1dem.png"
-    alt="Supplement PDP First-Screen Build"
-    width={1200}
-    height={1600}
-    priority
-    className="h-full w-full object-cover object-top"
-  />
-</div>
+              <div className="max-h-[520px] flex-1 overflow-hidden rounded-2xl border border-slate-200">
+                <Image
+                  src="/portfolio/ag1dem.png"
+                  alt="Supplement PDP First-Screen Build"
+                  width={1200}
+                  height={1600}
+                  priority
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
 
               <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold text-slate-600">
                 <div className="rounded-xl bg-slate-50 p-3">Trust Proof</div>
@@ -273,12 +271,13 @@ export default function ShopifyPdpPortfolioPage() {
 
           <div className="mb-10">
             <h2 className="max-w-3xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
-              Three examples that prove one focused offer.
+              Three product page examples showing the exact sections I can
+              rebuild for your store.
             </h2>
             <p className="mt-4 max-w-2xl text-slate-600">
-              Each project is selected to show a different part of PDP
-              conversion: full buying flow, mobile transformation, and complex
-              offer structure.
+              These examples show the core parts of a strong Shopify PDP first
+              screen: product media, trust proof, offer structure, CTA clarity,
+              bundles, subscriptions, and mobile buying flow.
             </p>
           </div>
 
@@ -310,13 +309,10 @@ export default function ShopifyPdpPortfolioPage() {
                         {project.eyebrow}
                       </span>
                       <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600 shadow-sm">
-                        {project.rating}
+                        {project.category}
                       </span>
                     </div>
 
-                    <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
-                      {project.category}
-                    </p>
                     <h3 className="mt-3 text-3xl font-black tracking-[-0.04em] text-slate-950 md:text-4xl">
                       {project.title}
                     </h3>
@@ -335,7 +331,7 @@ export default function ShopifyPdpPortfolioPage() {
                       </div>
                       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                         <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-600">
-                          Solution
+                          Fix
                         </p>
                         <p className="mt-3 text-sm leading-6 text-slate-600">
                           {project.solution}
@@ -345,7 +341,7 @@ export default function ShopifyPdpPortfolioPage() {
 
                     <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                       <p className="mb-4 text-sm font-black text-slate-950">
-                        What this proves
+                        What this shows
                       </p>
                       <div className="grid gap-3">
                         {project.points.map((point) => (
@@ -368,32 +364,84 @@ export default function ShopifyPdpPortfolioPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-        <SectionLabel>My PDP Framework</SectionLabel>
+        <SectionLabel>Starter Offer</SectionLabel>
 
-        <div className="max-w-4xl">
-          <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
-            I structure the first screen around the buying decision.
-          </h2>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+          <div>
+            <h2 className="max-w-3xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+              Start with the section where buyers make the first decision.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
+              Instead of selling a full-store redesign first, I focus on one
+              high-impact area: the top of the product page. This makes the
+              project easier to start, easier to review, and easier to judge.
+            </p>
+          </div>
 
-          <p className="mt-5 text-base leading-7 text-slate-600">
-            Before designing or coding, I map the section so every element has a
-            job: build trust, explain the promise, make the offer clear, reduce
-            risk, and push the customer toward the next action.
-          </p>
-        </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="mb-4 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800">
+                Free Review
+              </div>
+              <h3 className="text-xl font-black text-slate-950">
+                PDP First-Screen Review
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Send me your product page link. I’ll point out the first section
+                I would improve around clarity, trust, offer structure, CTA, and
+                mobile buying flow.
+              </p>
+            </div>
 
-        <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
-          <Image
-            src="/portfolio/pdp-framework.png"
-            alt="Shopify PDP First-Screen Framework"
-            width={1600}
-            height={1000}
-            className="h-auto w-full rounded-2xl object-contain"
-          />
+            <div className="rounded-[1.5rem] border border-slate-950 bg-slate-950 p-6 text-white shadow-xl">
+              <div className="mb-4 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-black text-white">
+                Paid Build
+              </div>
+              <h3 className="text-xl font-black">
+                PDP First-Screen Rebuild
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                I redesign and build the first screen of your Shopify product
+                page in custom Liquid/CSS, including product media, trust proof,
+                offer box, CTA, reassurance, and mobile layout.
+              </p>
+              <p className="mt-5 text-sm font-black text-emerald-300">
+                Small section rebuilds available.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="border-y border-slate-200 bg-white px-5 py-16 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionLabel>My PDP Framework</SectionLabel>
+
+          <div className="max-w-4xl">
+            <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
+              I structure the first screen around the buying decision.
+            </h2>
+
+            <p className="mt-5 text-base leading-7 text-slate-600">
+              Before designing or coding, I map the section so every element has
+              a job: build trust, explain the promise, make the offer clear,
+              reduce risk, and push the customer toward the next action.
+            </p>
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm">
+            <Image
+              src="/portfolio/pdp-framework.png"
+              alt="Shopify PDP First-Screen Framework"
+              width={1600}
+              height={1000}
+              className="h-auto w-full rounded-2xl object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-5 py-16 md:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionLabel>Built With</SectionLabel>
 
@@ -476,21 +524,23 @@ export default function ShopifyPdpPortfolioPage() {
           </div>
 
           <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
-            Want me to review your product page first screen?
+            Send me your product page link.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-            Send me a Shopify product page link and I’ll point out the first
-            area I’d improve around trust, offer clarity, CTA, and mobile buying
-            flow.
-          </p>
+  Send your Shopify product page for review/audit. I’ll tell you the first
+  section I would improve and why — around trust, offer clarity, CTA, and
+  mobile buying flow.
+</p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:worgieelguide@gmail.com?subject=Shopify PDP First-Screen Review"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
-            >
-              Send Product Page Link <ArrowRight className="h-4 w-4" />
-            </a>
+           <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=worgieelguide@gmail.com&su=Shopify%20PDP%20First-Screen%20Review&body=Hi%20Worgan%2C%0D%0A%0D%0AI%20would%20like%20you%20to%20review%2Faudit%20my%20Shopify%20product%20page.%0D%0A%0D%0AMy%20product%20page%20link%3A%0D%0A%0D%0A"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
+>
+  Send My Product Page for Review/Audit <ArrowRight className="h-4 w-4" />
+</a>
 
             <a
               href="#projects"
@@ -501,8 +551,9 @@ export default function ShopifyPdpPortfolioPage() {
           </div>
 
           <p className="mt-6 text-xs font-semibold text-slate-400">
-            Demo Shopify PDP builds created to show Liquid/CSS implementation
-            and conversion-focused product page structure.
+            Demo Shopify PDP builds created to show my Liquid/CSS
+            implementation, section structure, and conversion-focused product
+            page thinking.
           </p>
         </div>
       </section>
