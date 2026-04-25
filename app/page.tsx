@@ -534,9 +534,7 @@ export default function ShopifyPdpPortfolioPage() {
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
            <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=worgieelguide@gmail.com&su=Shopify%20PDP%20First-Screen%20Review&body=Hi%20Worgan%2C%0D%0A%0D%0AI%20would%20like%20you%20to%20review%2Faudit%20my%20Shopify%20product%20page.%0D%0A%0D%0AMy%20product%20page%20link%3A%0D%0A%0D%0A"
-  target="_blank"
-  rel="noopener noreferrer"
+  href="mailto:worgieelguide@gmail.com?subject=Shopify%20PDP%20First-Screen%20Review&body=Hi%20Worgan%2C%0D%0A%0D%0AI%20would%20like%20you%20to%20review%2Faudit%20my%20Shopify%20product%20page.%0D%0A%0D%0AMy%20product%20page%20link%3A%0D%0A%0D%0A"
   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
 >
   Send My Product Page for Review/Audit <ArrowRight className="h-4 w-4" />
