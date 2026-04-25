@@ -29,7 +29,7 @@ const projects = [
       "Review proof placed close to the product title",
       "Subscription cards structured with savings and delivery logic",
       "Gift/value stack positioned before the CTA",
-      "Guarantee, shipping, and cancellation reassurance near the decision point",
+      "Guarantee, shipping, and cancellation reassurance placed near the decision point",
     ],
   },
   {
@@ -117,7 +117,7 @@ export default function ShopifyPdpPortfolioPage() {
             </div>
 
             <h1 className="max-w-4xl text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-6xl lg:text-7xl">
-              Product pages that make the buying decision clearer.
+              Shopify product pages that make buying feel easier.
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
@@ -139,7 +139,7 @@ export default function ShopifyPdpPortfolioPage() {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white px-6 py-4 text-sm font-black text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-950"
               >
-                Send Product Page Link
+                Send Me Your Product Page
               </a>
             </div>
 
@@ -206,7 +206,7 @@ export default function ShopifyPdpPortfolioPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <p className="text-sm font-bold text-slate-300">
             Focused on the product page area where customers decide whether to
-            trust, continue, or buy.
+            trust the product, understand the offer, and click add to cart.
           </p>
           <div className="flex flex-wrap gap-2">
             <Badge>Product media</Badge>
@@ -271,8 +271,8 @@ export default function ShopifyPdpPortfolioPage() {
 
           <div className="mb-10">
             <h2 className="max-w-3xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
-              Three product page examples showing the exact sections I can
-              rebuild for your store.
+              Three examples showing how I improve Shopify product page first
+              screens.
             </h2>
             <p className="mt-4 max-w-2xl text-slate-600">
               These examples show the core parts of a strong Shopify PDP first
@@ -381,15 +381,15 @@ export default function ShopifyPdpPortfolioPage() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
               <div className="mb-4 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-800">
-                Free Review
+                Free First-Screen Suggestion
               </div>
               <h3 className="text-xl font-black text-slate-950">
-                PDP First-Screen Review
+                I’ll point out the first section I’d improve.
               </h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">
-                Send me your product page link. I’ll point out the first section
-                I would improve around clarity, trust, offer structure, CTA, and
-                mobile buying flow.
+                Send me your product page link. I’ll identify one first-screen
+                issue around clarity, trust, offer structure, CTA, or mobile
+                buying flow.
               </p>
             </div>
 
@@ -398,7 +398,7 @@ export default function ShopifyPdpPortfolioPage() {
                 Paid Build
               </div>
               <h3 className="text-xl font-black">
-                PDP First-Screen Rebuild
+                Shopify PDP First-Screen Rebuild
               </h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">
                 I redesign and build the first screen of your Shopify product
@@ -425,7 +425,7 @@ export default function ShopifyPdpPortfolioPage() {
             <p className="mt-5 text-base leading-7 text-slate-600">
               Before designing or coding, I map the section so every element has
               a job: build trust, explain the promise, make the offer clear,
-              reduce risk, and push the customer toward the next action.
+              reduce risk, and guide the customer toward the next action.
             </p>
           </div>
 
@@ -524,21 +524,21 @@ export default function ShopifyPdpPortfolioPage() {
           </div>
 
           <h2 className="text-3xl font-black tracking-[-0.04em] md:text-5xl">
-            Send me your product page link.
+            Send me your product page.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-  Send your Shopify product page for review/audit. I’ll tell you the first
-  section I would improve and why — around trust, offer clarity, CTA, and
-  mobile buying flow.
-</p>
+            Send me your Shopify product page and I’ll point out the first
+            section I would improve — around trust, offer clarity, CTA, and
+            mobile buying flow.
+          </p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-           <a
-  href="mailto:worgieelguide@gmail.com?subject=Shopify%20PDP%20First-Screen%20Review&body=Hi%20Worgan%2C%0D%0A%0D%0AI%20would%20like%20you%20to%20review%2Faudit%20my%20Shopify%20product%20page.%0D%0A%0D%0AMy%20product%20page%20link%3A%0D%0A%0D%0A"
-  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
->
-  Send My Product Page for Review/Audit <ArrowRight className="h-4 w-4" />
-</a>
+            <a
+              href="mailto:worgieelguide@gmail.com?subject=Shopify%20PDP%20First-Screen%20Suggestion&body=Hi%20Worgan%2C%0D%0A%0D%0AHere%20is%20my%20Shopify%20product%20page%20link%3A%0D%0A%0D%0A"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-950 px-6 py-4 text-sm font-black text-white shadow-xl transition hover:-translate-y-0.5 hover:bg-slate-800"
+            >
+              Send My Product Page <ArrowRight className="h-4 w-4" />
+            </a>
 
             <a
               href="#projects"
